@@ -148,19 +148,19 @@ export default function AboutPage() {
               <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 Meet the Founder
               </p>
-              <h2 className="mb-6">Sarah Chen</h2>
+              <h2 className="mb-6">Tatiana Mikhalev</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                With over 15 years in cosmetic chemistry, Sarah founded BLUM after
+                With over 15 years in cosmetic chemistry, Tatiana founded BLUM after
                 witnessing firsthand how the industry prioritized trends over
                 efficacy.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                &ldquo;I wanted to create products I would trust on my own skin,&rdquo; Sarah
+                &ldquo;I wanted to create products I would trust on my own skin,&rdquo; Tatiana
                 explains. &ldquo;That meant stripping away the noise and focusing on what
                 actually works—proven ingredients in their most effective forms.&rdquo;
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Today, Sarah oversees every formulation, ensuring BLUM products meet
+                Today, Tatiana oversees every formulation, ensuring BLUM products meet
                 the highest standards of quality and efficacy.
               </p>
             </AnimatedSection>
@@ -169,7 +169,7 @@ export default function AboutPage() {
               <div className="aspect-square bg-skin-light rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
-                  alt="Sarah Chen, Founder of BLUM"
+                  alt="Tatiana Mikhalev, Founder of BLUM"
                   className="w-full h-full object-cover"
                 />
               </div>
