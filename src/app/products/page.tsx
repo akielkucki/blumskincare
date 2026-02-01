@@ -1,57 +1,32 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ProductCard, FeaturedProduct } from "@/components/products/ProductCard";
-import { products, getFeaturedProduct } from "@/data/products";
+import {
+  ProductCard,
+  FeaturedProduct,
+} from "@/components/products/ProductCard";
+import { getAllProducts } from "@/lib/shopify";
+import { ProductsHero } from "@/components/products/ProductsHero";
 
-export default function ProductsPage() {
-  const featuredProduct = getFeaturedProduct();
-  const otherProducts = products.filter((p) => p.id !== featuredProduct.id);
+export const revalidate = 60; // Revalidate every 60 seconds
+
+export default async function ProductsPage() {
+  const products = await getAllProducts();
+  const featuredProduct = products[0];
+  const otherProducts = products.slice(1);
 
   return (
     <main className="pt-24">
       {/* Hero */}
-      <section className="py-20 md:py-32">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.p
-              className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              The Collection
-            </motion.p>
-            <motion.h1
-              className="mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Our Products
-            </motion.h1>
-            <motion.p
-              className="text-xl text-muted-foreground leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Thoughtfully formulated essentials for radiant, healthy skin.
-              Each product is designed to deliver visible results with clean,
-              effective ingredients.
-            </motion.p>
-          </div>
-        </Container>
-      </section>
+      <ProductsHero />
 
       {/* Featured Product */}
-      <section className="py-20 md:py-32 bg-cream">
-        <Container>
-          <FeaturedProduct product={featuredProduct} />
-        </Container>
-      </section>
+      {featuredProduct && (
+        <section className="py-20 md:py-32 bg-cream">
+          <Container>
+            <FeaturedProduct product={featuredProduct} />
+          </Container>
+        </section>
+      )}
 
       {/* Product Grid */}
       <section className="py-20 md:py-32">
@@ -63,13 +38,23 @@ export default function ProductsPage() {
             <h2>All Products</h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {otherProducts.map((product, index) => (
-              <AnimatedSection key={product.id} delay={index * 0.1}>
-                <ProductCard product={product} />
-              </AnimatedSection>
-            ))}
-          </div>
+          {otherProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+              {otherProducts.map((product, index) => (
+                <AnimatedSection key={product.id} delay={(index % 3) * 0.1}>
+                  <ProductCard product={product} />
+                </AnimatedSection>
+              ))}
+            </div>
+          ) : products.length === 1 ? (
+            <p className="text-center text-muted-foreground">
+              More products coming soon.
+            </p>
+          ) : (
+            <p className="text-center text-muted-foreground">
+              No products available at the moment.
+            </p>
+          )}
         </Container>
       </section>
     </main>

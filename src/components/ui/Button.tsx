@@ -6,7 +6,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "outlineHero";
   size?: "sm" | "md" | "lg";
   href?: string;
   onClick?: () => void;
@@ -32,6 +32,7 @@ export function Button({
     primary: "bg-foreground text-background hover:bg-foreground/90",
     secondary: "bg-skin text-foreground hover:bg-skin-dark",
     outline: "border-2 border-foreground text-foreground hover:bg-foreground hover:text-background",
+    outlineHero: "border-2 border-white drop-shadow-sm drop-shadow-black text-white hover:bg-foreground hover:text-background",
   };
 
   const sizes = {

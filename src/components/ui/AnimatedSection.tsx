@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface AnimatedSectionProps {
@@ -16,6 +16,12 @@ export function AnimatedSection({
   delay = 0,
   direction = "up",
 }: AnimatedSectionProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const directionOffset = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
@@ -23,6 +29,11 @@ export function AnimatedSection({
     right: { x: -40, y: 0 },
     none: { x: 0, y: 0 },
   };
+
+  // Render a plain div on server and initial client render to avoid hydration mismatch
+  if (!isMounted) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -55,7 +66,25 @@ interface AnimatedTextProps {
 }
 
 export function AnimatedText({ children, className = "", delay = 0 }: AnimatedTextProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const words = children.split(" ");
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Render plain spans on server and initial client render to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <span className={className}>
+        {words.map((word, index) => (
+          <span key={`${word}-${index}`} className="inline-block mr-[0.25em]">
+            {word}
+          </span>
+        ))}
+      </span>
+    );
+  }
 
   return (
     <motion.span className={className}>

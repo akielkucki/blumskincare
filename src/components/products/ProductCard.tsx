@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import type { Product } from "@/data/products";
+import type { Product } from "@/lib/shopify";
 
 interface ProductCardProps {
   product: Product;
@@ -10,20 +11,32 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Link href={`/products/${product.id}`}>
+    <Link href={`/products/${product.handle}`}>
       <motion.article
         className="group cursor-pointer"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="aspect-square overflow-hidden bg-cream rounded-lg mb-4">
-          <motion.img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.5 }}
-          />
+        <div className="aspect-square overflow-hidden bg-cream rounded-lg mb-4 relative">
+          {product.image ? (
+            <motion.div
+              className="w-full h-full"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </motion.div>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+              No image
+            </div>
+          )}
         </div>
         <div className="space-y-1">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">
@@ -32,7 +45,9 @@ export function ProductCard({ product }: ProductCardProps) {
           <h3 className="font-medium tracking-tight group-hover:text-skin-dark transition-colors">
             {product.name}
           </h3>
-          <p className="text-muted-foreground">${product.price}</p>
+          <p className="text-muted-foreground">
+            ${product.price.toFixed(2)} {product.currencyCode}
+          </p>
         </div>
       </motion.article>
     </Link>
@@ -47,17 +62,26 @@ export function FeaturedProduct({ product }: FeaturedProductProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <motion.div
-        className="aspect-square overflow-hidden bg-cream rounded-lg"
+        className="aspect-square overflow-hidden bg-cream rounded-lg relative"
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover"
-        />
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+            No image
+          </div>
+        )}
       </motion.div>
 
       <motion.div
@@ -80,10 +104,12 @@ export function FeaturedProduct({ product }: FeaturedProductProps) {
           {product.description}
         </p>
 
-        <p className="text-2xl font-medium">${product.price}</p>
+        <p className="text-2xl font-medium">
+          ${product.price.toFixed(2)} {product.currencyCode}
+        </p>
 
         <Link
-          href={`/products/${product.id}`}
+          href={`/products/${product.handle}`}
           className="inline-flex items-center gap-2 text-sm font-medium border-b-2 border-foreground pb-1 hover:border-skin-dark transition-colors"
         >
           View Details

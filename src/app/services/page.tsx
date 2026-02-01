@@ -73,7 +73,7 @@ export default function ServicesPage() {
                 href="tel:+15551234567"
                 variant="outline"
                 size="lg"
-                className="border-background text-background hover:bg-background hover:text-foreground"
+                className="border-background text-background bg-white hover:bg-gray-300 hover:text-foreground"
               >
                 Call (555) 123-4567
               </Button>
