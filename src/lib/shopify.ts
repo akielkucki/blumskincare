@@ -1,7 +1,7 @@
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
-const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
-const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+const endpoint = domain ? `https://${domain}/api/2024-01/graphql.json` : "";
 
 export interface ShopifyImage {
   url: string;
@@ -77,27 +77,48 @@ async function shopifyFetch<T>({
 }: {
   query: string;
   variables?: Record<string, unknown>;
-}): Promise<T> {
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
-    },
-    body: JSON.stringify({ query, variables }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Shopify API error: ${response.statusText}`);
+}): Promise<T | null> {
+  if (!endpoint || !storefrontAccessToken) {
+    console.warn(
+      "[shopify] Missing NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN or NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN — skipping fetch."
+    );
+    return null;
   }
 
-  const json = await response.json();
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
+      },
+      body: JSON.stringify({ query, variables }),
+    });
 
-  if (json.errors) {
-    throw new Error(json.errors[0]?.message || "Unknown Shopify error");
+    if (!response.ok) {
+      // 402/403 typically indicate billing/payment or access issues.
+      // Log and return null so pages can render gracefully.
+      console.error(
+        `[shopify] API responded ${response.status} ${response.statusText}`
+      );
+      return null;
+    }
+
+    const json = await response.json();
+
+    if (json.errors) {
+      console.error(
+        "[shopify] GraphQL errors:",
+        json.errors[0]?.message || json.errors
+      );
+      return null;
+    }
+
+    return json.data as T;
+  } catch (err) {
+    console.error("[shopify] Network/fetch error:", err);
+    return null;
   }
-
-  return json.data;
 }
 
 const PRODUCT_FRAGMENT = `
@@ -233,6 +254,8 @@ export async function getAllProducts(): Promise<Product[]> {
     variables: { first: 100 },
   });
 
+  if (!data) return [];
+
   return data.products.edges.map((edge) => normalizeProduct(edge.node));
 }
 
@@ -246,7 +269,7 @@ export async function getProductByHandle(
     variables: { handle },
   });
 
-  if (!data.productByHandle) {
+  if (!data || !data.productByHandle) {
     return null;
   }
 
@@ -265,4 +288,121 @@ export async function getProductsByCategory(
   return products.filter(
     (product) => product.category.toLowerCase() === category.toLowerCase()
   );
+}
+
+// --- Collections ---
+
+export interface ShopifyCollection {
+  id: string;
+  handle: string;
+  title: string;
+  description: string;
+  image: ShopifyImage | null;
+  products?: {
+    edges: Array<{ node: ShopifyProduct }>;
+  };
+}
+
+export interface Collection {
+  id: string;
+  handle: string;
+  title: string;
+  description: string;
+  image: string | null;
+}
+
+export interface CollectionWithProducts extends Collection {
+  products: Product[];
+}
+
+const GET_COLLECTIONS_QUERY = `
+  query GetCollections($first: Int!) {
+    collections(first: $first) {
+      edges {
+        node {
+          id
+          handle
+          title
+          description
+          image {
+            url
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
+
+const GET_COLLECTIONS_WITH_PRODUCTS_QUERY = `
+  ${PRODUCT_FRAGMENT}
+  query GetCollectionsWithProducts($first: Int!, $productsFirst: Int!) {
+    collections(first: $first) {
+      edges {
+        node {
+          id
+          handle
+          title
+          description
+          image {
+            url
+            altText
+          }
+          products(first: $productsFirst) {
+            edges {
+              node {
+                ...ProductFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+function normalizeCollection(node: ShopifyCollection): Collection {
+  return {
+    id: node.id,
+    handle: node.handle,
+    title: node.title,
+    description: node.description,
+    image: node.image?.url || null,
+  };
+}
+
+export async function getCollections(): Promise<Collection[]> {
+  const data = await shopifyFetch<{
+    collections: { edges: Array<{ node: ShopifyCollection }> };
+  }>({
+    query: GET_COLLECTIONS_QUERY,
+    variables: { first: 20 },
+  });
+
+  if (!data) return [];
+
+  return data.collections.edges
+    .map((edge) => normalizeCollection(edge.node))
+    .filter((c) => c.handle !== "frontpage");
+}
+
+export async function getCollectionsWithProducts(): Promise<
+  CollectionWithProducts[]
+> {
+  const data = await shopifyFetch<{
+    collections: { edges: Array<{ node: ShopifyCollection }> };
+  }>({
+    query: GET_COLLECTIONS_WITH_PRODUCTS_QUERY,
+    variables: { first: 20, productsFirst: 100 },
+  });
+
+  if (!data) return [];
+
+  return data.collections.edges
+    .map((edge) => ({
+      ...normalizeCollection(edge.node),
+      products:
+        edge.node.products?.edges.map((e) => normalizeProduct(e.node)) || [],
+    }))
+    .filter((c) => c.handle !== "frontpage" && c.products.length > 0);
 }

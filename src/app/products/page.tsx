@@ -4,15 +4,22 @@ import {
   ProductCard,
   FeaturedProduct,
 } from "@/components/products/ProductCard";
-import { getAllProducts } from "@/lib/shopify";
+import { getAllProducts, getCollectionsWithProducts } from "@/lib/shopify";
 import { ProductsHero } from "@/components/products/ProductsHero";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function ProductsPage() {
-  const products = await getAllProducts();
-  const featuredProduct = products[0];
-  const otherProducts = products.slice(1);
+  const collections = await getCollectionsWithProducts();
+  const hasCollections = collections.length > 0;
+
+  // Featured product: first product from first collection, or first product overall
+  const featuredProduct = hasCollections
+    ? collections[0]?.products[0]
+    : (await getAllProducts())[0];
+
+  // Fallback: if no collections, fetch all products for a flat grid
+  const allProducts = hasCollections ? null : await getAllProducts();
 
   return (
     <main className="pt-24">
@@ -28,35 +35,63 @@ export default async function ProductsPage() {
         </section>
       )}
 
-      {/* Product Grid */}
-      <section className="py-20 md:py-32">
-        <Container>
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
-              Full Collection
-            </p>
-            <h2>All Products</h2>
-          </AnimatedSection>
+      {/* Collection Sections */}
+      {hasCollections ? (
+        collections.map((collection) => (
+          <section
+            key={collection.id}
+            id={collection.handle}
+            className="py-20 md:py-32 scroll-mt-24"
+          >
+            <Container>
+              <AnimatedSection className="text-center mb-16">
+                <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  Collection
+                </p>
+                <h2>{collection.title}</h2>
+                {collection.description && (
+                  <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+                    {collection.description}
+                  </p>
+                )}
+              </AnimatedSection>
 
-          {otherProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-              {otherProducts.map((product, index) => (
-                <AnimatedSection key={product.id} delay={(index % 3) * 0.1}>
-                  <ProductCard product={product} />
-                </AnimatedSection>
-              ))}
-            </div>
-          ) : products.length === 1 ? (
-            <p className="text-center text-muted-foreground">
-              More products coming soon.
-            </p>
-          ) : (
-            <p className="text-center text-muted-foreground">
-              No products available at the moment.
-            </p>
-          )}
-        </Container>
-      </section>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                {collection.products.map((product, index) => (
+                  <AnimatedSection key={product.id} delay={(index % 3) * 0.1}>
+                    <ProductCard product={product} />
+                  </AnimatedSection>
+                ))}
+              </div>
+            </Container>
+          </section>
+        ))
+      ) : (
+        <section className="py-20 md:py-32">
+          <Container>
+            <AnimatedSection className="text-center mb-16">
+              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                Full Collection
+              </p>
+              <h2>All Products</h2>
+            </AnimatedSection>
+
+            {allProducts && allProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                {allProducts.map((product, index) => (
+                  <AnimatedSection key={product.id} delay={(index % 3) * 0.1}>
+                    <ProductCard product={product} />
+                  </AnimatedSection>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-muted-foreground">
+                No products available at the moment.
+              </p>
+            )}
+          </Container>
+        </section>
+      )}
     </main>
   );
 }
