@@ -19,7 +19,7 @@ export function HomeHero() {
             Skincare Elevated
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-muted drop-shadow-lg drop-shadow-black tracking-tight mb-8 max-w-4xl mx-auto">
-            <AnimatedText delay={0.3}>Reveal Your Natural Radiance</AnimatedText>
+            <AnimatedText delay={0.3}>BLÜM Skin Therapy</AnimatedText>
           </h1>
           <motion.p
             className="text-lg md:text-xl drop-shadow-md drop-shadow-black text-muted max-w-2xl mx-auto mb-10"

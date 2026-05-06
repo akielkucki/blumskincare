@@ -141,7 +141,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                   </div>
                 </div>
               )}
-              {service.price && (
+              {!service.price && (
                 <div className="flex items-center gap-2">
                   <svg
                     width="18"

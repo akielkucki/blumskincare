@@ -92,7 +92,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
               <p className="text-lg font-medium">{service.duration}</p>
             </div>
           )}
-          {service.price && (
+          {!service.price && (
             <div>
               <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
                 Starting at

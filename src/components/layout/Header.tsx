@@ -27,8 +27,7 @@ export function Header() {
               className={`text-2xl font-medium tracking-tight transition-colors duration-500 ${
                 isMenuOpen ? "text-background" : "text-foreground"
               }`}
-            >
-              BLUM
+            >BLÜM
             </Link>
 
             {/* Hamburger Button — always visible */}
