@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ServiceCard } from "@/components/home/ServiceCard";
 import { Container } from "@/components/layout/Container";
+import { ServiceDetail } from "@/components/services/ServiceDetail";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
-import { ServiceCard } from "@/components/home/ServiceCard";
-import { ServiceDetail } from "@/components/services/ServiceDetail";
-import { services, getServiceById } from "@/data/services";
+import { getServiceById, services } from "@/data/services";
 import { siteConfig } from "@/lib/site";
 
 interface ServiceDetailPageProps {
@@ -118,7 +118,11 @@ export default async function ServiceDetailPage({
               us to schedule your treatment or consultation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href={siteConfig.bookingUrl} variant="secondary" size="lg">
+              <Button
+                href={siteConfig.bookingUrl}
+                variant="secondary"
+                size="lg"
+              >
                 Book Now
               </Button>
               <Button

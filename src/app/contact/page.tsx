@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { Container } from "@/components/layout/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/site";
 
@@ -134,7 +134,9 @@ export default function ContactPage() {
                         key={hour.day}
                         className="flex justify-between items-center"
                       >
-                        <span className="text-muted-foreground">{hour.day}</span>
+                        <span className="text-muted-foreground">
+                          {hour.day}
+                        </span>
                         <span>{hour.time}</span>
                       </div>
                     ))}
@@ -179,22 +181,23 @@ export default function ContactPage() {
                     </a>
                   </div>
                 </div>
-
-
               </div>
-
             </AnimatedSection>
-
           </div>
           {/* Map Placeholder */}
           <div className="w-full aspect-video rounded-lg flex items-center justify-center mx-auto">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d852.2199212558249!2d-75.09897967176391!3d40.21171739706425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6af294c9584b7%3A0xae59f44488c1126f!2sBl%C3%BCm%20skin%20therapy%20Studio%20%26%20Spa!5e0!3m2!1sen!2sus!4v1767733395306!5m2!1sen!2sus"
-                width="1000" height="450" style={{border: 0, borderRadius: "4px", width: "100%"}} allowFullScreen={false} loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade" className={""}></iframe>
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d852.2199212558249!2d-75.09897967176391!3d40.21171739706425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6af294c9584b7%3A0xae59f44488c1126f!2sBl%C3%BCm%20skin%20therapy%20Studio%20%26%20Spa!5e0!3m2!1sen!2sus!4v1767733395306!5m2!1sen!2sus"
+              width="1000"
+              height="450"
+              style={{ border: 0, borderRadius: "4px", width: "100%" }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className={""}
+            ></iframe>
           </div>
         </Container>
-
       </section>
     </main>
   );

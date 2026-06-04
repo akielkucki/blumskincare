@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import type { Service } from "@/data/services";
 import { siteConfig } from "@/lib/site";
@@ -28,16 +29,23 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-cream rounded-lg">
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={gallery[activeImage]}
-              src={gallery[activeImage]}
-              alt={service.name}
-              className="w-full h-full object-cover"
+              className="absolute inset-0"
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.5 }}
-            />
+            >
+              <Image
+                src={gallery[activeImage]}
+                alt={service.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+            </motion.div>
           </AnimatePresence>
           <div className="absolute top-4 left-4 px-3 py-1 bg-background/90 backdrop-blur-sm rounded-full text-xs uppercase tracking-wider text-foreground">
             {service.category}
@@ -57,7 +65,13 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                     : "border-border opacity-70 hover:opacity-100"
                 }`}
               >
-                <img src={src} alt="" className="w-full h-full object-cover" />
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="120px"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>

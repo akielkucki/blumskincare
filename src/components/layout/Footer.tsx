@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { siteConfig, fullAddress } from "@/lib/site";
+import { fullAddress, siteConfig } from "@/lib/site";
 
 const footerLinks = {
   navigation: [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
+    { href: "/products", label: "Shop" },
     { href: "/services", label: "Services" },
-    { href: "/products", label: "Products" },
+    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ],
   social: [
@@ -100,10 +100,16 @@ export function Footer() {
             reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+            <Link
+              href="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link
+              href="/terms"
+              className="hover:text-foreground transition-colors"
+            >
               Terms of Service
             </Link>
           </div>

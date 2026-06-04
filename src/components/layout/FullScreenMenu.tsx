@@ -1,19 +1,19 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 import { services } from "@/data/services";
-import { getCollections, type Collection } from "@/lib/shopify";
+import { type Collection, getCollections } from "@/lib/shopify";
 
 type Submenu = "services" | "products" | null;
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/products", label: "Shop", submenu: "products" as const },
   { href: "/services", label: "Services", submenu: "services" as const },
-  { href: "/products", label: "Products", submenu: "products" as const },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -71,7 +71,7 @@ export function FullScreenMenu({ isOpen, onClose }: FullScreenMenuProps) {
         }
       }
     },
-    [activeSubmenu, onClose]
+    [activeSubmenu, onClose],
   );
 
   useEffect(() => {

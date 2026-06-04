@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
+import { useCart } from "@/components/cart/CartProvider";
 import { Button } from "@/components/ui/Button";
 import { createCheckout, type Product } from "@/lib/shopify";
 import { siteConfig } from "@/lib/site";
@@ -13,12 +14,26 @@ interface ProductDetailClientProps {
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "unavailable">(
-    "idle"
+    "idle",
   );
+  const { addItem, openCart } = useCart();
 
   const variantId = product.variants[0]?.id;
   const inStock = product.variants[0]?.availableForSale ?? false;
   const isShopifyProduct = variantId?.startsWith("gid://shopify") ?? false;
+
+  function handleAddToCart() {
+    if (!variantId || !inStock) return;
+    addItem({
+      variantId,
+      handle: product.handle,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      currencyCode: product.currencyCode,
+    });
+    openCart();
+  }
 
   async function handleCheckout() {
     if (!variantId) return;
@@ -118,21 +133,18 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             <Button
               size="lg"
               className="flex-1"
+              onClick={handleAddToCart}
+              disabled={!inStock}
+            >
+              {!inStock ? "Sold Out" : "Add to Cart"}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
               onClick={handleCheckout}
               disabled={status === "loading" || !inStock}
             >
-              {status === "loading"
-                ? "Preparing checkout…"
-                : !inStock
-                  ? "Sold Out"
-                  : "Buy Now"}
-            </Button>
-            <Button
-              href={siteConfig.bookingUrl}
-              variant="outline"
-              size="lg"
-            >
-              Book a Consultation
+              {status === "loading" ? "Preparing…" : "Buy Now"}
             </Button>
           </div>
 
@@ -140,15 +152,28 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             <p className="text-sm text-muted-foreground">
               {isShopifyProduct
                 ? "Checkout is temporarily unavailable. Please try again shortly or purchase in studio."
-                : "Our online shop is launching soon — this is a sample product. Visit us in studio or book a consultation to purchase."}
+                : "Our online shop is launching soon — this is a sample product. Visit us in studio or book a treatment to purchase."}
             </p>
           )}
           {!isShopifyProduct && status === "idle" && (
             <p className="text-sm text-muted-foreground">
-              Sample product preview. Online checkout activates once our shop
-              goes live.
+              Sample product preview — you can add it to your cart to try the
+              experience. Online checkout activates once our shop goes live.
             </p>
           )}
+
+          <p className="text-sm text-muted-foreground">
+            Prefer in person?{" "}
+            <a
+              href={siteConfig.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-skin-dark"
+            >
+              Book a consultation
+            </a>
+            .
+          </p>
         </div>
       </motion.div>
     </div>

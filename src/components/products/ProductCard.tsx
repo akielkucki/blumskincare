@@ -1,8 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import type { MouseEvent } from "react";
+import { useCart } from "@/components/cart/CartProvider";
 import type { Product } from "@/lib/shopify";
 
 interface ProductCardProps {
@@ -10,6 +12,26 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const { addItem, openCart } = useCart();
+
+  const variant = product.variants[0];
+  const inStock = variant?.availableForSale ?? false;
+
+  function handleQuickAdd(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!variant || !inStock) return;
+    addItem({
+      variantId: variant.id,
+      handle: product.handle,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      currencyCode: product.currencyCode,
+    });
+    openCart();
+  }
+
   return (
     <Link href={`/products/${product.handle}`}>
       <motion.article
@@ -49,6 +71,15 @@ export function ProductCard({ product }: ProductCardProps) {
             ${product.price.toFixed(2)} {product.currencyCode}
           </p>
         </div>
+
+        <button
+          type="button"
+          onClick={handleQuickAdd}
+          disabled={!inStock}
+          className="mt-3 w-full py-2.5 text-sm font-medium border border-foreground/20 rounded-full transition-all duration-300 hover:bg-foreground hover:text-background disabled:opacity-50 disabled:cursor-not-allowed md:opacity-0 md:group-hover:opacity-100"
+        >
+          {inStock ? "Add to Cart" : "Sold Out"}
+        </button>
       </motion.article>
     </Link>
   );

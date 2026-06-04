@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Service } from "@/data/services";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import type { Service } from "@/data/services";
 import { siteConfig } from "@/lib/site";
 
 interface ServiceSectionProps {
@@ -34,7 +35,8 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
 
   const availableTabs = TABS.filter((tab) => {
     if (tab.id === "overview") return true;
-    if (tab.id === "process") return service.process && service.process.length > 0;
+    if (tab.id === "process")
+      return service.process && service.process.length > 0;
     if (tab.id === "aftercare")
       return service.aftercare && service.aftercare.length > 0;
     if (tab.id === "faqs") return service.faqs && service.faqs.length > 0;
@@ -60,16 +62,22 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
           >
             <div className="relative aspect-[4/5] overflow-hidden bg-cream rounded-lg group">
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={gallery[activeImage]}
-                  src={gallery[activeImage]}
-                  alt={service.name}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0"
                   initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.02 }}
                   transition={{ duration: 0.5 }}
-                />
+                >
+                  <Image
+                    src={gallery[activeImage]}
+                    alt={service.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </motion.div>
               </AnimatePresence>
 
               {/* Hover overlay with category */}
@@ -92,10 +100,12 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                         : "border-border opacity-70 hover:opacity-100"
                     }`}
                   >
-                    <img
+                    <Image
                       src={src}
                       alt=""
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="120px"
+                      className="object-cover"
                     />
                   </button>
                 ))}
@@ -152,7 +162,10 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                   strokeWidth="1.5"
                   className="text-skin-dark"
                 >
-                  <path d="M12 3v18M7 7h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8" strokeLinecap="round" />
+                  <path
+                    d="M12 3v18M7 7h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8"
+                    strokeLinecap="round"
+                  />
                 </svg>
                 <div>
                   <p className="text-xs text-muted-foreground">
@@ -316,8 +329,8 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                     transition={{ duration: 0.25 }}
                   >
                     <p className="text-sm text-muted-foreground mb-4">
-                      To get the most from your treatment, keep the following
-                      in mind:
+                      To get the most from your treatment, keep the following in
+                      mind:
                     </p>
                     <ul className="space-y-3">
                       {service.aftercare.map((tip, i) => (

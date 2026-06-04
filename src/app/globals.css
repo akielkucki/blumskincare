@@ -58,49 +58,49 @@
   --radius: 0.5rem;
 
   /* Skincare color palette */
-  --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
 
   /* Skin tones */
-  --skin-light: #F5EBE0;
-  --skin: #E8D5C4;
-  --skin-dark: #D4B8A0;
-  --cream: #FAF7F5;
+  --skin-light: #f5ebe0;
+  --skin: #e8d5c4;
+  --skin-dark: #d4b8a0;
+  --cream: #faf7f5;
 
   /* UI colors - elegant minimalist */
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #1A1A1A;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F5EBE0;
-  --secondary-foreground: #1A1A1A;
-  --muted: #FAF7F5;
-  --muted-foreground: #6B6B6B;
-  --accent: #E8D5C4;
-  --accent-foreground: #1A1A1A;
-  --destructive: #DC2626;
-  --border: #E8D5C4;
-  --input: #E8D5C4;
-  --ring: #D4B8A0;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #ffffff;
+  --secondary: #f5ebe0;
+  --secondary-foreground: #1a1a1a;
+  --muted: #faf7f5;
+  --muted-foreground: #6b6b6b;
+  --accent: #e8d5c4;
+  --accent-foreground: #1a1a1a;
+  --destructive: #dc2626;
+  --border: #e8d5c4;
+  --input: #e8d5c4;
+  --ring: #d4b8a0;
 
   /* Chart colors using skin tones */
-  --chart-1: #D4B8A0;
-  --chart-2: #E8D5C4;
-  --chart-3: #F5EBE0;
-  --chart-4: #C9A88E;
-  --chart-5: #B89B7A;
+  --chart-1: #d4b8a0;
+  --chart-2: #e8d5c4;
+  --chart-3: #f5ebe0;
+  --chart-4: #c9a88e;
+  --chart-5: #b89b7a;
 
   /* Sidebar */
-  --sidebar: #FAF7F5;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #1A1A1A;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #E8D5C4;
-  --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E8D5C4;
-  --sidebar-ring: #D4B8A0;
+  --sidebar: #faf7f5;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #1a1a1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8d5c4;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e8d5c4;
+  --sidebar-ring: #d4b8a0;
 }
 
 @layer base {
@@ -109,9 +109,16 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-medium tracking-tight;
   }
   h1 {

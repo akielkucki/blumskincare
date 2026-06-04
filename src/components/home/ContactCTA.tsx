@@ -1,8 +1,8 @@
 "use client";
 
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/site";
 
 export function ContactCTA() {
@@ -13,7 +13,9 @@ export function ContactCTA() {
           <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
             Get in Touch
           </p>
-          <h2 className="text-background mb-6">Ready to Transform Your Skin?</h2>
+          <h2 className="text-background mb-6">
+            Ready to Transform Your Skin?
+          </h2>
           <p className="text-lg text-background/70 max-w-2xl mx-auto mb-10">
             Book a consultation with our skincare experts or reach out with any
             questions. We&apos;re here to help you achieve your best skin ever.

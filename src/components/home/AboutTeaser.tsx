@@ -25,8 +25,8 @@ export function AboutTeaser() {
             </p>
             <h2 className="mb-6">Beauty in Simplicity</h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              At BLÜM, we believe that effective skincare doesn&apos;t need to be
-              complicated. Every treatment is built around carefully chosen
+              At BLÜM, we believe that effective skincare doesn&apos;t need to
+              be complicated. Every treatment is built around carefully chosen
               techniques and products that work in harmony with your skin&apos;s
               natural processes.
             </p>

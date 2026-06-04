@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ServiceSection } from "@/components/services/ServiceSection";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/data/services";
 import { siteConfig } from "@/lib/site";
@@ -37,9 +37,9 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Experience professional skincare treatments tailored to your unique
-              needs. Our expert estheticians combine advanced techniques with our
-              signature products for transformative results.
+              Experience professional skincare treatments tailored to your
+              unique needs. Our expert estheticians combine advanced techniques
+              with our signature products for transformative results.
             </motion.p>
           </div>
         </Container>
@@ -59,15 +59,17 @@ export default function ServicesPage() {
             <p className="text-sm uppercase tracking-[0.2em] text-background/60 mb-4">
               Ready to Begin?
             </p>
-            <h2 className="text-background mb-6">
-              Book Your Appointment
-            </h2>
+            <h2 className="text-background mb-6">Book Your Appointment</h2>
             <p className="text-lg text-background/70 max-w-2xl mx-auto mb-10">
-              Take the first step toward healthier, more radiant skin. Contact us
-              to schedule your treatment or consultation.
+              Take the first step toward healthier, more radiant skin. Contact
+              us to schedule your treatment or consultation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href={siteConfig.bookingUrl} variant="secondary" size="lg">
+              <Button
+                href={siteConfig.bookingUrl}
+                variant="secondary"
+                size="lg"
+              >
                 Book Now
               </Button>
               <Button

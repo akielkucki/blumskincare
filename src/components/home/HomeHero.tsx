@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
 import { AnimatedText } from "@/components/ui/AnimatedSection";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/site";
 
 export function HomeHero() {
@@ -14,7 +14,7 @@ export function HomeHero() {
       <div className="absolute inset-0 -z-10">
         <Image
           src="/landing_photo.jpeg"
-          alt="BLÜM Skin Therapy treatment room"
+          alt="BLÜM Store — skincare and treatment studio in Warminster, PA"
           fill
           priority
           sizes="100vw"
@@ -33,7 +33,7 @@ export function HomeHero() {
             {siteConfig.tagline}
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white drop-shadow-lg tracking-tight mb-8 max-w-4xl mx-auto">
-            <AnimatedText delay={0.3}>BLÜM Skin Therapy</AnimatedText>
+            <AnimatedText delay={0.3}>BLÜM Store</AnimatedText>
           </h1>
           <motion.p
             className="text-lg md:text-xl drop-shadow-md text-white/90 max-w-2xl mx-auto mb-10"
@@ -41,9 +41,9 @@ export function HomeHero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            Results-driven, fully customized skin therapy in Warminster, PA.
-            From signature facials to advanced treatments, your skin is cared
-            for with intention — and a little luxury.
+            Shop curated, professional-grade skincare — and book results-driven
+            treatments at our Warminster, PA studio. Everything your skin needs,
+            in one place.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -51,11 +51,15 @@ export function HomeHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <Button href={siteConfig.bookingUrl} size="lg">
-              Book Appointment
+            <Button href="/products" size="lg">
+              Shop Now
             </Button>
-            <Button href="/services" variant="outlineHero" size="lg">
-              Our Services
+            <Button
+              href={siteConfig.bookingUrl}
+              variant="outlineHero"
+              size="lg"
+            >
+              Book a Treatment
             </Button>
           </motion.div>
         </motion.div>

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
+import type React from "react";
+import { CartDrawer } from "@/components/cart/CartDrawer";
+import { CartProvider } from "@/components/cart/CartProvider";
 import { Footer } from "@/components/layout/Footer";
-import React from "react";
-import { siteConfig, localBusinessJsonLd } from "@/lib/site";
+import { Header } from "@/components/layout/Header";
+import { localBusinessJsonLd, siteConfig } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,9 +21,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Skin Studio in Warminster, PA`,
+    default: `${siteConfig.name} | Shop Skincare & Book Treatments in Warminster, PA`,
     template: `%s | ${siteConfig.name}`,
   },
+  // Help search engines associate the store with the established studio name.
+  other: { "business:legal_name": siteConfig.legalName },
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [
@@ -34,6 +38,9 @@ export const metadata: Metadata = {
     "esthetician Warminster",
     "Bucks County facials",
     "skincare studio",
+    "skincare store",
+    "shop skincare online",
+    "BLÜM Store",
     "BLÜM Skin Therapy",
   ],
   authors: [{ name: siteConfig.name }],
@@ -46,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | Skin Studio in Warminster, PA`,
+    title: `${siteConfig.name} | Shop Skincare & Book Treatments in Warminster, PA`,
     description: siteConfig.description,
     images: [
       {
@@ -59,7 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Skin Studio in Warminster, PA`,
+    title: `${siteConfig.name} | Shop Skincare & Book Treatments in Warminster, PA`,
     description: siteConfig.description,
     images: ["/landing_photo.jpeg"],
   },
@@ -95,9 +102,12 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessJsonLd()),
           }}
         />
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

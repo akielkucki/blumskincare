@@ -19,7 +19,8 @@ export const products: Product[] = [
     price: 68,
     description:
       "A lightweight, deeply hydrating serum formulated with triple-weight hyaluronic acid to plump and smooth skin at every level. Perfect for all skin types seeking lasting moisture.",
-    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&q=80",
     ingredients: [
       "Hyaluronic Acid",
       "Vitamin B5",
@@ -44,7 +45,8 @@ export const products: Product[] = [
     price: 82,
     description:
       "A potent yet gentle vitamin C formula that brightens, evens skin tone, and protects against environmental stressors. Formulated with stabilized L-ascorbic acid for maximum efficacy.",
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&q=80",
     ingredients: [
       "L-Ascorbic Acid (15%)",
       "Vitamin E",
@@ -69,7 +71,8 @@ export const products: Product[] = [
     price: 42,
     description:
       "A silky, non-foaming cleanser that effectively removes makeup and impurities while maintaining the skin's natural moisture barrier. Ideal for sensitive and dry skin types.",
-    image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=80",
     ingredients: [
       "Ceramides",
       "Squalane",
@@ -94,7 +97,8 @@ export const products: Product[] = [
     price: 95,
     description:
       "A rich, restorative night cream that works while you sleep to repair, renew, and rejuvenate. Infused with retinol and peptides for visible anti-aging results.",
-    image: "https://images.unsplash.com/photo-1570194065650-d99fb4b38b15?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1570194065650-d99fb4b38b15?w=800&q=80",
     ingredients: [
       "Retinol (0.5%)",
       "Peptide Complex",
@@ -119,7 +123,8 @@ export const products: Product[] = [
     price: 56,
     description:
       "A lightweight yet effective daily moisturizer that strengthens and protects the skin barrier. Fast-absorbing formula perfect for layering under makeup or sunscreen.",
-    image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=800&q=80",
     ingredients: [
       "Ceramide Complex",
       "Squalane",
@@ -144,7 +149,8 @@ export const products: Product[] = [
     price: 48,
     description:
       "A gentle yet effective exfoliating toner with AHA and BHA to reveal smoother, brighter skin. Balances and preps skin for better absorption of following products.",
-    image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=800&q=80",
     ingredients: [
       "Glycolic Acid (5%)",
       "Salicylic Acid (0.5%)",

@@ -1,7 +1,8 @@
 import { exampleProducts } from "@/data/exampleProducts";
 
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
-const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+const storefrontAccessToken =
+  process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
 const endpoint = domain ? `https://${domain}/api/2024-01/graphql.json` : "";
 
@@ -82,7 +83,7 @@ async function shopifyFetch<T>({
 }): Promise<T | null> {
   if (!endpoint || !storefrontAccessToken) {
     console.warn(
-      "[shopify] Missing NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN or NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN — skipping fetch."
+      "[shopify] Missing NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN or NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN — skipping fetch.",
     );
     return null;
   }
@@ -101,7 +102,7 @@ async function shopifyFetch<T>({
       // 402/403 typically indicate billing/payment or access issues.
       // Log and return null so pages can render gracefully.
       console.error(
-        `[shopify] API responded ${response.status} ${response.statusText}`
+        `[shopify] API responded ${response.status} ${response.statusText}`,
       );
       return null;
     }
@@ -111,7 +112,7 @@ async function shopifyFetch<T>({
     if (json.errors) {
       console.error(
         "[shopify] GraphQL errors:",
-        json.errors[0]?.message || json.errors
+        json.errors[0]?.message || json.errors,
       );
       return null;
     }
@@ -266,7 +267,7 @@ export async function getAllProducts(): Promise<Product[]> {
 }
 
 export async function getProductByHandle(
-  handle: string
+  handle: string,
 ): Promise<Product | null> {
   const data = await shopifyFetch<{
     productByHandle: ShopifyProduct | null;
@@ -301,15 +302,17 @@ const CART_CREATE_MUTATION = `
 `;
 
 /**
- * Creates a Shopify cart for a single variant and returns the hosted checkout URL.
- * Returns null when Shopify is unconfigured or the variant isn't a real Shopify
- * product (e.g. example fallback products) — callers should handle this gracefully.
+ * Creates a Shopify cart from one or more lines and returns the hosted checkout
+ * URL. Non-Shopify variants (e.g. example fallback products) are filtered out;
+ * returns null when nothing real remains or Shopify is unconfigured/unpaid.
  */
-export async function createCheckout(
-  variantId: string,
-  quantity = 1
+export async function createCartCheckoutUrl(
+  lines: Array<{ variantId: string; quantity: number }>,
 ): Promise<string | null> {
-  if (!variantId.startsWith("gid://shopify")) {
+  const realLines = lines.filter((l) =>
+    l.variantId.startsWith("gid://shopify"),
+  );
+  if (realLines.length === 0) {
     return null;
   }
 
@@ -320,10 +323,26 @@ export async function createCheckout(
     };
   }>({
     query: CART_CREATE_MUTATION,
-    variables: { lines: [{ merchandiseId: variantId, quantity }] },
+    variables: {
+      lines: realLines.map((l) => ({
+        merchandiseId: l.variantId,
+        quantity: l.quantity,
+      })),
+    },
   });
 
   return data?.cartCreate?.cart?.checkoutUrl ?? null;
+}
+
+/**
+ * Convenience wrapper for an immediate single-variant "Buy Now" checkout.
+ * Returns null for non-Shopify variants or when Shopify is unavailable.
+ */
+export async function createCheckout(
+  variantId: string,
+  quantity = 1,
+): Promise<string | null> {
+  return createCartCheckoutUrl([{ variantId, quantity }]);
 }
 
 export async function getFeaturedProduct(): Promise<Product | null> {
@@ -332,11 +351,11 @@ export async function getFeaturedProduct(): Promise<Product | null> {
 }
 
 export async function getProductsByCategory(
-  category: string
+  category: string,
 ): Promise<Product[]> {
   const products = await getAllProducts();
   return products.filter(
-    (product) => product.category.toLowerCase() === category.toLowerCase()
+    (product) => product.category.toLowerCase() === category.toLowerCase(),
   );
 }
 

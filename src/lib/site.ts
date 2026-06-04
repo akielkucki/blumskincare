@@ -4,12 +4,12 @@
  */
 
 export const siteConfig = {
-  name: "BLÜM Skin Therapy",
+  name: "BLÜM Store",
   shortName: "BLÜM",
   legalName: "BLÜM Skin Therapy Studio & Spa",
-  tagline: "Skincare Elevated",
+  tagline: "Shop Skincare, Elevated",
   description:
-    "BLÜM Skin Therapy is a results-driven skin studio in Warminster, PA offering customized facials, acne treatments, DMK enzyme therapy, PROCELL microchanneling, and buccal sculpting massage. Book your treatment or shop our curated skincare.",
+    "BLÜM Store is your destination for results-driven skincare in Warminster, PA. Shop curated, professional-grade products and book customized facials, acne treatments, DMK enzyme therapy, PROCELL microchanneling, and buccal sculpting massage.",
   // Public site URL — override with NEXT_PUBLIC_SITE_URL in production.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.blumskintherapy.com",
   bookingUrl: "https://blumskintherapy.glossgenius.com/services",
@@ -94,7 +94,7 @@ export function localBusinessJsonLd() {
     })),
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      `${siteConfig.legalName} ${fullAddress}`
+      `${siteConfig.legalName} ${fullAddress}`,
     )}`,
   };
 }

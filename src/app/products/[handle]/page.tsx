@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ProductCard } from "@/components/products/ProductCard";
-import { getProductByHandle, getAllProducts } from "@/lib/shopify";
 import { ProductDetailClient } from "@/components/products/ProductDetailClient";
+import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { getAllProducts, getProductByHandle } from "@/lib/shopify";
 
 export const revalidate = 60;
 
@@ -55,7 +55,7 @@ export default async function ProductDetailPage({
     .filter(
       (p) =>
         p.handle !== product.handle &&
-        p.category.toLowerCase() === product.category.toLowerCase()
+        p.category.toLowerCase() === product.category.toLowerCase(),
     )
     .slice(0, 3);
 

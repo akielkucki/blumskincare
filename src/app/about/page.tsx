@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
@@ -88,11 +88,11 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              BLÜM Skin Therapy was born from a simple belief: skincare should
-              work with your skin, not against it. From our studio in Warminster,
-              PA, we deliver results-driven, fully customized treatments — and a
-              curated line of professional skincare — that honor your skin&apos;s
-              natural wisdom.
+              BLÜM Store was born from a simple belief: skincare should work
+              with your skin, not against it. From our studio in Warminster, PA,
+              we offer a curated line of professional skincare — and
+              results-driven, fully customized treatments — that honor your
+              skin&apos;s natural wisdom.
             </motion.p>
           </div>
         </Container>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             <div className="aspect-[21/9] bg-cream rounded-lg overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80"
-                alt="BLÜM Skin Therapy treatment studio"
+                alt="BLÜM Store treatment studio"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -124,8 +124,8 @@ export default function AboutPage() {
               <h2 className="mb-6">Less, But Better</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 In a world of 12-step routines and endless product launches, we
-                chose a different path. Our philosophy is rooted in the belief that
-                skin thrives on simplicity and consistency.
+                chose a different path. Our philosophy is rooted in the belief
+                that skin thrives on simplicity and consistency.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 We build each treatment with a focused approach—the right
@@ -133,8 +133,8 @@ export default function AboutPage() {
                 about doing more; it&apos;s about doing what actually works.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                The result? Streamlined routines that deliver. Products that feel
-                luxurious. Skin that glows with health.
+                The result? Streamlined routines that deliver. Products that
+                feel luxurious. Skin that glows with health.
               </p>
             </AnimatedSection>
 
@@ -191,9 +191,9 @@ export default function AboutPage() {
               <h2 className="mb-6">Tatiana Mikhalev</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 A licensed esthetician with a deep passion for corrective skin
-                care, Tatiana founded BLÜM Skin Therapy to offer something the
-                industry too often overlooks: truly personalized treatment that
-                works with each client&apos;s skin rather than against it.
+                care, Tatiana founded BLÜM Store to offer something the industry
+                too often overlooks: truly personalized treatment that works
+                with each client&apos;s skin rather than against it.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 &ldquo;I never wanted to hand someone a one-size-fits-all
@@ -216,7 +216,7 @@ export default function AboutPage() {
               <div className="relative aspect-square bg-skin-light rounded-lg overflow-hidden">
                 <Image
                   src="/owner.png"
-                  alt="Tatiana Mikhalev, founder of BLÜM Skin Therapy"
+                  alt="Tatiana Mikhalev, founder of BLÜM Store"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -298,7 +298,10 @@ function FAQSection() {
                   </span>
                   <motion.span
                     animate={{ rotate: openIndex === index ? 45 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                    }}
                     className="flex-shrink-0 w-8 h-8 rounded-full border border-foreground/20 flex items-center justify-center group-hover:border-skin-dark group-hover:text-skin-dark transition-colors duration-300"
                   >
                     <svg
@@ -321,7 +324,10 @@ function FAQSection() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{
-                        height: { duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] },
+                        height: {
+                          duration: 0.4,
+                          ease: [0.21, 0.47, 0.32, 0.98],
+                        },
                         opacity: { duration: 0.3, delay: 0.1 },
                       }}
                       className="overflow-hidden"

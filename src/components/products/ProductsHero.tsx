@@ -14,7 +14,7 @@ export function ProductsHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            The Collection
+            The BLÜM Store
           </motion.p>
           <motion.h1
             className="mb-8"
@@ -22,7 +22,7 @@ export function ProductsHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Our Products
+            Shop Skincare
           </motion.h1>
           <motion.p
             className="text-xl text-muted-foreground leading-relaxed"
@@ -30,9 +30,9 @@ export function ProductsHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Thoughtfully formulated essentials for radiant, healthy skin. Each
-            product is designed to deliver visible results with clean, effective
-            ingredients.
+            Curated, professional-grade essentials for radiant, healthy skin —
+            the same products our estheticians trust in-studio, delivered to
+            your door.
           </motion.p>
         </div>
       </Container>
