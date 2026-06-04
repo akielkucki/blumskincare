@@ -22,18 +22,90 @@ export interface Service {
   aftercare?: string[];
   faqs?: ServiceFAQ[];
   duration?: string;
+  /** Starting price in USD. Omit when pricing is determined at consultation. */
   price?: number;
 }
 
 export const services: Service[] = [
   {
+    id: "new-client-consultation",
+    name: "New Client Consultation + Treatment",
+    category: "Consultations",
+    description:
+      "Your first visit at BLÜM. A focused consultation paired with a customized treatment that addresses acne, congestion, sensitivity, dehydration, inflammation, and early signs of aging.",
+    longDescription:
+      "Every skin journey at BLÜM begins here. We start by getting to know your skin and your goals, then move directly into a fully customized treatment built around what your skin needs that day — deep cleansing, extractions, lymphatic drainage, massage, LED, chemical exfoliation, and barrier support. You'll leave with clearer skin and a clear plan for what comes next.",
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1000&q=80",
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
+      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1000&q=80",
+    ],
+    features: [
+      "In-depth skin analysis",
+      "Customized treatment, not a fixed menu",
+      "Deep cleansing & gentle extractions",
+      "Lymphatic drainage & massage",
+      "LED and chemical exfoliation as needed",
+      "Personalized home-care plan",
+    ],
+    idealFor: [
+      "First-time BLÜM clients",
+      "Acne and congestion",
+      "Sensitivity and inflammation",
+      "Dehydrated or compromised skin",
+    ],
+    process: [
+      {
+        title: "Consultation & Skin Analysis",
+        description:
+          "We discuss your history, lifestyle, and goals, then analyze your skin closely to choose the right approach for the day.",
+      },
+      {
+        title: "Cleanse & Prep",
+        description:
+          "A thorough double cleanse removes buildup and prepares the skin for treatment.",
+      },
+      {
+        title: "Customized Treatment",
+        description:
+          "Extractions, lymphatic drainage, massage, LED, and chemical exfoliation are selected and layered based on what your skin needs.",
+      },
+      {
+        title: "Barrier Support & Plan",
+        description:
+          "We finish with barrier-supporting products and SPF, and map out your next steps and home routine.",
+      },
+    ],
+    aftercare: [
+      "Avoid direct sun exposure for 24 hours",
+      "Skip retinol and acids the night of treatment",
+      "Hydrate well and apply SPF each morning",
+    ],
+    faqs: [
+      {
+        question: "Why is the first visit a consultation and treatment?",
+        answer:
+          "Because no two complexions are alike. Combining the consult with a treatment lets us assess how your skin responds in real time and tailor your plan accordingly.",
+      },
+      {
+        question: "Do I need to stop using products beforehand?",
+        answer:
+          "Pause active exfoliants (retinol, AHAs/BHAs) for about 3–5 days before your appointment. Otherwise, come as you are.",
+      },
+    ],
+    duration: "30+ minutes",
+    price: 50,
+  },
+  {
     id: "signature-facial",
-    name: "Signature Facial",
+    name: "BLÜM Signature Facial",
     category: "Facials",
     description:
-      "Our signature treatment combines deep cleansing, exfoliation, extraction, and hydration tailored to your unique skin needs. Experience the ultimate in personalized skincare with our expertly trained estheticians.",
+      "Fully customized treatments designed to support your skin's current condition — cleansing, exfoliation, dermaplaning, extractions, massage, lymphatic drainage, masks, LED, and cryotherapy.",
     longDescription:
-      "The Signature Facial is the heart of our menu — a fully customizable, results-driven treatment designed around your skin on the day you arrive. Every step, from the cleanse to the final massage, is selected to balance, refresh, and visibly brighten your complexion.",
+      "The BLÜM Signature Facial is the heart of our menu — a results-driven, fully customized treatment built around your skin on the day you arrive. Every step is selected to balance, refresh, and visibly brighten your complexion, combining advanced techniques with deeply relaxing touch. Recommended every 4–6 weeks to align with your skin's natural renewal cycle.",
     image:
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
     gallery: [
@@ -42,283 +114,492 @@ export const services: Service[] = [
       "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
     ],
     features: [
-      "Customized to your skin type",
-      "Deep pore cleansing",
-      "Gentle extraction",
-      "Hydrating mask treatment",
-      "Face and neck massage",
+      "Customized to your skin's current condition",
+      "Cleansing & exfoliation",
+      "Dermaplaning & extractions",
+      "Massage & lymphatic drainage",
+      "Treatment mask, LED & cryotherapy",
     ],
     idealFor: [
-      "First-time clients",
+      "Maintenance & glow",
       "Dull or congested skin",
-      "Maintenance between advanced treatments",
-      "Sensitive skin types",
+      "Fine lines and texture",
+      "Anyone wanting a customized facial",
     ],
     process: [
       {
-        title: "Consultation & Skin Analysis",
+        title: "Analysis & Cleanse",
         description:
-          "We start with a brief conversation about your goals, then analyze your skin under proper lighting to choose the right products and pressure for your session.",
+          "We assess your skin and begin with a tailored double cleanse to prepare the canvas.",
       },
       {
-        title: "Double Cleanse & Exfoliation",
+        title: "Exfoliation & Dermaplaning",
         description:
-          "An oil-based and water-based cleanse remove buildup, followed by a gentle enzyme or acid exfoliation to refine texture.",
+          "Chemical exfoliation and optional dermaplaning refine texture and remove dead surface cells and fine vellus hair.",
       },
       {
-        title: "Extraction & Treatment Mask",
+        title: "Extractions & Massage",
         description:
-          "Targeted, non-aggressive extractions are performed where needed, followed by a treatment mask matched to your skin's current state.",
+          "Targeted extractions clear congestion, followed by sculpting facial and lymphatic massage to de-puff and boost circulation.",
       },
       {
-        title: "Massage & Finishing",
+        title: "Mask, LED & Cryo",
         description:
-          "A relaxing face, neck, and décolleté massage stimulates circulation. We finish with serum, moisturizer, and SPF.",
+          "A treatment mask, LED light therapy, and cryotherapy calm, firm, and finish the skin with a luminous glow.",
       },
     ],
     aftercare: [
-      "Avoid direct sun exposure for 24 hours",
-      "Skip retinol and acids the night of treatment",
-      "Hydrate generously and apply SPF in the morning",
+      "Avoid direct sun for 24 hours and wear SPF daily",
+      "Skip active exfoliants the night of your facial",
+      "Keep skin hydrated to extend your results",
     ],
     faqs: [
       {
-        question: "How often should I get a Signature Facial?",
+        question: "How often should I book a Signature Facial?",
         answer:
-          "Every 4–6 weeks aligns with your natural skin cell turnover and delivers consistent, visible results.",
+          "Every 4–6 weeks aligns with your skin's natural cell turnover and delivers consistent, visible results.",
       },
       {
-        question: "Will I be red afterward?",
+        question: "Is there downtime?",
         answer:
-          "Some clients experience light flushing for 30–60 minutes. There is no real downtime — most return to work or events the same day.",
+          "There's no real downtime. Some clients experience light flushing for 30–60 minutes that quickly settles.",
       },
       {
-        question: "Can I wear makeup after?",
+        question: "Can the facial be tailored to sensitive skin?",
         answer:
-          "We recommend giving your skin 12 hours of breathing room, but mineral makeup is fine if needed.",
+          "Absolutely — every step, from exfoliation strength to extractions, is adjusted to your skin's tolerance.",
       },
     ],
-    duration: "60 minutes",
-    price: 120,
+    duration: "60+ minutes",
+    price: 140,
   },
   {
-    id: "hydrafacial",
-    name: "HydraGlow Treatment",
-    category: "Advanced Treatments",
+    id: "buccal-lymphatic-sculpting",
+    name: "Buccal + Lymphatic Sculpting Massage",
+    category: "Facial Massage",
     description:
-      "An advanced multi-step treatment that combines cleansing, exfoliation, extraction, and intense hydration. Uses patented technology to deliver antioxidants and peptides deep into the skin for immediate results.",
+      "Specialized buccal and lymphatic massage techniques that reduce puffiness and tension while improving circulation. Includes an Environ cleanse and an optional finishing mask.",
     longDescription:
-      "HydraGlow is our most-requested advanced treatment for an event-ready glow. Using vortex-fusion technology, it cleanses, exfoliates, and infuses serums into the skin in a single session — delivering visible plumpness, brightness, and clarity with zero downtime.",
+      "A deeply restorative treatment that works the muscles of the face from both inside and out. Intraoral (buccal) massage releases tension held in the jaw and cheeks, while lymphatic techniques drain fluid, reduce puffiness, and leave the face looking lifted, sculpted, and refreshed. Includes an Environ cleanse and an optional finishing mask to seal in the glow.",
     image:
-      "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80",
+      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1000&q=80",
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000&q=80",
+      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1000&q=80",
+      "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1000&q=80",
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
     ],
     features: [
-      "Immediate visible results",
-      "Deep hydration infusion",
-      "Reduction in fine lines",
-      "Improved skin texture",
-      "No downtime required",
+      "Intraoral buccal massage",
+      "Lymphatic drainage techniques",
+      "Reduces puffiness & tension",
+      "Improves circulation & tone",
+      "Environ cleanse + optional mask",
     ],
     idealFor: [
-      "Pre-event glow",
-      "Dehydrated skin",
-      "Fine lines and early signs of aging",
-      "Uneven tone or texture",
+      "Facial tension & TMJ-related tightness",
+      "Puffiness & fluid retention",
+      "Natural lift & sculpting",
+      "Stress relief",
     ],
     process: [
       {
-        title: "Vortex Cleanse",
+        title: "Environ Cleanse",
         description:
-          "A gentle resurfacing tip lifts away dead skin and impurities while a soothing cleanser preps the skin.",
+          "We begin with a gentle Environ cleanse to prepare the skin and the décolleté.",
       },
       {
-        title: "Glycolic & Salicylic Peel",
+        title: "Lymphatic Drainage",
         description:
-          "A mild peel loosens debris from the pores without irritation or stinging.",
+          "Light, rhythmic strokes move stagnant fluid and reduce puffiness across the face and neck.",
       },
       {
-        title: "Painless Extractions",
+        title: "Buccal Sculpting",
         description:
-          "Vacuum-based extractions clear pores quickly and comfortably.",
+          "Using gloved intraoral techniques, we release tension in the deep facial muscles for a visibly sculpted result.",
       },
       {
-        title: "Antioxidant & Peptide Infusion",
+        title: "Finishing Mask",
         description:
-          "A custom booster (hydrating, brightening, or firming) is infused under gentle pressure to leave skin plump and luminous.",
+          "An optional finishing mask soothes and hydrates to seal in the lift and glow.",
       },
     ],
     aftercare: [
-      "Avoid heavy workouts for 24 hours to preserve serums",
-      "Hold off on actives (retinol, AHAs) for 48 hours",
-      "Reapply SPF throughout the day",
+      "Drink plenty of water to support lymphatic flow",
+      "Avoid heavy, salty meals for the rest of the day",
+      "Gentle daily facial massage helps maintain results",
     ],
     faqs: [
       {
-        question: "How is this different from a regular facial?",
+        question: "Is buccal massage uncomfortable?",
         answer:
-          "HydraGlow uses a patented device to combine extraction and serum infusion in one step, producing more immediate, visible glow.",
+          "It can feel intense where you hold tension, but it shouldn't be painful. Pressure is always adjusted to your comfort.",
       },
       {
-        question: "Is it safe for sensitive skin?",
+        question: "How long do the results last?",
         answer:
-          "Yes — pressure, peel strength, and serums are all adjustable. We tailor every step to your tolerance.",
-      },
-      {
-        question: "How long do results last?",
-        answer:
-          "Hydration boost is immediate and typically visible for 5–7 days. Monthly sessions deliver cumulative, longer-lasting results.",
+          "Many clients see an immediate lift and de-puffed look that lasts several days. A regular cadence builds longer-lasting tone.",
       },
     ],
-    duration: "45 minutes",
-    price: 180,
+    duration: "60+ minutes",
+    price: 150,
   },
   {
-    id: "skin-consultation",
-    name: "Personalized Skin Consultation",
-    category: "Consultations",
+    id: "acne-bootcamp",
+    name: "Face Reality Acne Bootcamp",
+    category: "Acne Treatments",
     description:
-      "Begin your skincare journey with a comprehensive one-on-one consultation. Our experts will analyze your skin, discuss your concerns, and create a customized routine using our products tailored specifically for you.",
+      "Customized corrective treatments for clients enrolled in our acne program. Performed biweekly or monthly to reduce breakouts, calm inflammation, and clear the skin.",
     longDescription:
-      "A dedicated session focused entirely on understanding your skin. We combine close visual analysis, lifestyle conversation, and expert product knowledge to build a routine you'll actually follow — and that genuinely fits your skin's needs.",
+      "The Face Reality Acne Bootcamp is a corrective treatment for clients actively following our acne program. Built on the Face Reality method, each session combines professional exfoliation, extractions, and high-frequency or LED therapy to accelerate clearing while your customized home-care routine does the heavy lifting between visits. Best results come from consistency — biweekly or monthly — alongside your prescribed products.",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1000&q=80",
-      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1000&q=80",
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1000&q=80",
+      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000&q=80",
+      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
     ],
     features: [
-      "In-depth skin analysis",
-      "Lifestyle assessment",
-      "Personalized routine creation",
-      "Product recommendations",
-      "Follow-up support",
+      "Built on the Face Reality method",
+      "Professional exfoliation",
+      "Thorough extractions",
+      "High-frequency / LED therapy",
+      "Paired with a home-care protocol",
     ],
     idealFor: [
-      "Anyone overwhelmed by skincare options",
-      "Clients with persistent concerns (acne, redness, pigmentation)",
-      "Routine resets after travel, pregnancy, or seasons changing",
+      "Active acne & breakouts",
+      "Persistent congestion",
+      "Post-acne marks",
+      "Clients ready to commit to clearing",
     ],
     process: [
       {
-        title: "Intake & Goals",
+        title: "Check-In & Skin Review",
         description:
-          "We discuss your current routine, lifestyle, and what you'd like your skin to feel like in 90 days.",
+          "We review how your skin responded to your home routine and adjust your protocol as needed.",
       },
       {
-        title: "Skin Analysis",
+        title: "Exfoliation",
         description:
-          "A thorough visual and tactile analysis identifies your skin type, sensitivities, and priority concerns.",
+          "A professional acid exfoliation loosens impactions and speeds cell turnover.",
       },
       {
-        title: "Routine Build",
+        title: "Extractions",
         description:
-          "Together we map an AM and PM routine using only what you need — no upselling, no shelf clutter.",
+          "Careful, thorough extractions clear active congestion to reduce future breakouts.",
       },
       {
-        title: "Follow-Up Plan",
+        title: "Calm & Treat",
         description:
-          "You leave with a written plan and a built-in check-in to adjust as your skin responds.",
+          "High-frequency or LED therapy targets acne-causing bacteria and reduces inflammation.",
       },
     ],
     aftercare: [
-      "Introduce new products one at a time, every 5–7 days",
-      "Photograph your skin weekly to track changes",
-      "Reach out anytime — questions between visits are always free",
+      "Stay consistent with your prescribed home-care routine",
+      "Do not pick or pop — let the skin heal",
+      "Wear SPF daily, especially while using actives",
     ],
     faqs: [
       {
-        question: "Do I have to buy products at the consultation?",
+        question: "Do I need to be enrolled in the acne program?",
         answer:
-          "Never. The consultation fee covers the expert time. You're welcome to take your plan and shop elsewhere.",
+          "Yes. The Bootcamp is a corrective treatment for clients in our acne program, where your custom home-care routine drives most of your results. Start with a consultation if you're new.",
       },
       {
-        question: "Can this be done virtually?",
+        question: "How long until I see clear skin?",
         answer:
-          "Yes — we offer video consultations with the same depth of analysis using high-quality photo intake beforehand.",
+          "Most clients see meaningful clearing within 3–4 months of consistent treatments and home care, as it takes time to work through congestion and adjust the skin.",
       },
     ],
-    duration: "45 minutes",
-    price: 75,
+    duration: "60+ minutes",
+    price: 130,
   },
   {
-    id: "chemical-peel",
-    name: "Renewal Chemical Peel",
+    id: "procell-microchanneling",
+    name: "PROCELL Microchanneling",
     category: "Advanced Treatments",
     description:
-      "A customized chemical peel treatment that addresses concerns from acne and hyperpigmentation to fine lines and dullness. Our gentle yet effective formulas reveal fresh, renewed skin with minimal downtime.",
+      "A collagen-stimulating treatment that creates microchannels in the skin and infuses stem-cell-derived growth factor serum to improve tone, texture, scarring, and signs of aging.",
     longDescription:
-      "Our peels are professional-grade and individually customized — never one-size-fits-all. We layer acids strategically to target your concerns while protecting your barrier, so you get real renewal without the harshness peels are known for.",
+      "PROCELL Microchanneling is a next-generation alternative to traditional microneedling. Fine microchannels trigger the skin's natural repair response while a bio-identical, stem-cell-derived growth factor serum is infused to amplify results. Over a series of treatments it visibly improves fine lines, acne scarring, pore size, pigmentation, and overall firmness — with minimal downtime. Pricing and the ideal series are confirmed at your consultation.",
     image:
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
+      "https://images.unsplash.com/photo-1620916297612-2c1d0c5c1c2e?w=800&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
-      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1000&q=80",
       "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000&q=80",
+      "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1000&q=80",
+      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
     ],
     features: [
-      "Multiple strength options",
-      "Targets specific concerns",
-      "Promotes cell renewal",
-      "Improves skin texture",
-      "Reduces hyperpigmentation",
+      "Stimulates natural collagen production",
+      "Stem-cell-derived growth factor infusion",
+      "Improves scarring & texture",
+      "Softens fine lines & pores",
+      "Minimal downtime",
     ],
     idealFor: [
-      "Hyperpigmentation and melasma",
-      "Acne and post-acne marks",
-      "Sun damage and dullness",
-      "Fine lines and rough texture",
+      "Acne scarring & texture",
+      "Fine lines & early aging",
+      "Enlarged pores",
+      "Uneven tone & pigmentation",
     ],
     process: [
       {
-        title: "Pre-Peel Prep",
+        title: "Consultation & Prep",
         description:
-          "We cleanse and degrease the skin for even acid penetration, then protect sensitive zones.",
+          "We confirm you're a candidate, then cleanse and prepare the skin for treatment.",
       },
       {
-        title: "Custom Acid Layering",
+        title: "Microchanneling",
         description:
-          "We apply 1–3 layers of a customized acid blend, monitoring your skin closely between each pass.",
+          "Controlled microchannels are created across the treatment area to activate the repair response.",
       },
       {
-        title: "Neutralization & Soothing",
+        title: "Growth Factor Infusion",
         description:
-          "The peel is neutralized and a calming, barrier-supporting mask is applied.",
+          "A stem-cell-derived growth factor serum is infused to maximize collagen stimulation and healing.",
       },
       {
-        title: "Post-Peel Protection",
+        title: "Soothe & Protect",
         description:
-          "We finish with peptides, hydrating serum, and a mineral SPF you can wear out the door.",
+          "We finish with calming, barrier-supporting products and mineral SPF.",
       },
     ],
     aftercare: [
-      "Strict daily SPF for at least 2 weeks",
-      "No retinol, scrubs, or acids for 5–7 days",
-      "Expect light flaking on days 3–5 — do not pick",
-      "Hydrate aggressively with a barrier cream",
+      "Avoid sun exposure and wear SPF diligently",
+      "No actives (retinol, acids) for 3–5 days",
+      "Expect mild redness for 24–48 hours",
+      "Keep skin clean and hydrated while it heals",
     ],
     faqs: [
       {
-        question: "Will I peel visibly?",
+        question: "How is this different from microneedling?",
         answer:
-          "Most clients experience light, fine flaking around days 3–5. Heavy peeling is rare with our customized approach.",
+          "PROCELL pairs microchanneling with a proprietary stem-cell-derived growth factor serum, which enhances the regenerative response beyond traditional microneedling.",
       },
       {
         question: "How many sessions will I need?",
         answer:
-          "A series of 3–6 spaced 3–4 weeks apart is typical for pigmentation or texture goals.",
-      },
-      {
-        question: "Can I do this in summer?",
-        answer:
-          "Yes, with diligent SPF use. We adjust formulation strength seasonally to keep results safe.",
+          "Most concerns respond best to a series of 3–6 sessions spaced about 4 weeks apart. Your plan is confirmed at consultation.",
       },
     ],
-    duration: "30 minutes",
-    price: 150,
+    duration: "60+ minutes",
+  },
+  {
+    id: "dmk-enzyme-therapy-level-1",
+    name: "DMK Enzyme Therapy — Level 1",
+    category: "Advanced Treatments",
+    description:
+      "A signature DMK enzyme masque treatment that works with the skin to flush, oxygenate, and strengthen — improving circulation, clearing congestion, and restoring healthy function.",
+    longDescription:
+      "DMK Enzyme Therapy is built on the philosophy of restoring skin to its peak function. The Level 1 enzyme masque creates a reverse osmosis effect — flushing toxins, oxygenating the skin, and stimulating circulation through the signature 'plasmatic' action. It's deeply detoxifying and strengthening, making it ideal for a wide range of concerns from aging to acne. Pricing is confirmed at your consultation.",
+    image:
+      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1000&q=80",
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
+      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1000&q=80",
+    ],
+    features: [
+      "Signature DMK enzyme masque",
+      "Oxygenates & detoxifies",
+      "Boosts circulation",
+      "Strengthens skin function",
+      "Suits most skin types & concerns",
+    ],
+    idealFor: [
+      "Dull, congested skin",
+      "Signs of aging",
+      "Acne & breakouts",
+      "Skin needing a reset",
+    ],
+    process: [
+      {
+        title: "Cleanse & Prep",
+        description:
+          "The skin is cleansed and prepped with DMK's preparatory products.",
+      },
+      {
+        title: "Enzyme Masque Application",
+        description:
+          "The signature enzyme masque is applied to begin the flushing and oxygenating process.",
+      },
+      {
+        title: "Plasmatic Action",
+        description:
+          "As the masque sets, you'll feel the characteristic 'pulsing' as circulation increases and toxins are flushed.",
+      },
+      {
+        title: "Remove & Finish",
+        description:
+          "The masque is removed and the skin is finished with DMK home-prescriptive products and SPF.",
+      },
+    ],
+    aftercare: [
+      "Wear SPF daily and avoid direct sun",
+      "Follow your DMK home-prescriptive routine",
+      "Stay hydrated to support the flushing process",
+    ],
+    faqs: [
+      {
+        question: "What does the enzyme masque feel like?",
+        answer:
+          "Most clients feel a tightening and a gentle pulsing sensation as circulation increases — it's a unique part of the treatment and completely normal.",
+      },
+      {
+        question: "Is Level 1 right for me?",
+        answer:
+          "Level 1 is a wonderful introduction to DMK Enzyme Therapy and suits most skin types. We'll confirm the right protocol at your consultation.",
+      },
+    ],
+    duration: "60+ minutes",
+  },
+  {
+    id: "dmk-enzyme-therapy-level-2",
+    name: "DMK Enzyme Therapy — Level 2",
+    category: "Advanced Treatments",
+    description:
+      "An advanced DMK enzyme treatment recommended after Level 1, intensifying the enzymatic action to address more pronounced concerns and accelerate results.",
+    longDescription:
+      "Level 2 builds on the foundation of DMK Enzyme Therapy Level 1, intensifying the enzymatic and corrective action for clients whose skin is ready for more. It targets deeper concerns — pigmentation, advanced aging, and stubborn congestion — and is most effective once your skin has acclimated through Level 1. Recommended after Level 1; pricing confirmed at consultation.",
+    image:
+      "https://images.unsplash.com/photo-1607008829749-c0f284a49841?w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1607008829749-c0f284a49841?w=1000&q=80",
+      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1000&q=80",
+      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
+    ],
+    features: [
+      "Advanced enzymatic action",
+      "Targets pigmentation & deeper concerns",
+      "Builds on Level 1 results",
+      "Corrective & strengthening",
+      "Customized DMK protocol",
+    ],
+    idealFor: [
+      "Clients who've completed Level 1",
+      "Pigmentation & sun damage",
+      "Advanced signs of aging",
+      "Stubborn congestion",
+    ],
+    process: [
+      {
+        title: "Skin Assessment",
+        description:
+          "We evaluate how your skin responded to Level 1 and tailor the Level 2 protocol accordingly.",
+      },
+      {
+        title: "Targeted Prep",
+        description:
+          "Corrective DMK products are layered to prime the skin for intensified enzyme action.",
+      },
+      {
+        title: "Enzyme Therapy",
+        description:
+          "The advanced enzyme treatment is applied to drive deeper detoxification and correction.",
+      },
+      {
+        title: "Finish & Prescribe",
+        description:
+          "We finish with home-prescriptive products and adjust your routine to support your results.",
+      },
+    ],
+    aftercare: [
+      "Strict daily SPF — your skin is more photosensitive",
+      "Follow your updated DMK home routine closely",
+      "Avoid additional exfoliation between treatments",
+    ],
+    faqs: [
+      {
+        question: "Why do I need Level 1 first?",
+        answer:
+          "Level 1 conditions and strengthens the skin so it can tolerate and benefit from the more intensive Level 2 action. We recommend it as a foundation.",
+      },
+      {
+        question: "How often should I come in?",
+        answer:
+          "Frequency depends on your goals and skin response — typically every 1–2 weeks during a corrective phase. We'll map your series at consultation.",
+      },
+    ],
+    duration: "60+ minutes",
+  },
+  {
+    id: "brow-tint",
+    name: "Brow Tint",
+    category: "Add-Ons",
+    description:
+      "A semi-permanent tint that defines and deepens the brows, adding shape and fullness for a polished, low-maintenance finish.",
+    longDescription:
+      "A quick, high-impact enhancement. Brow tinting deposits a semi-permanent color that defines your natural shape, fills sparse areas, and frames the face — so you wake up with groomed, fuller-looking brows for weeks. A perfect add-on to any facial.",
+    image:
+      "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
+    features: [
+      "Defines & deepens brow color",
+      "Adds shape and fullness",
+      "Semi-permanent, low-maintenance",
+      "Great facial add-on",
+    ],
+    idealFor: [
+      "Sparse or light brows",
+      "Low-maintenance definition",
+      "Framing the face",
+    ],
+    aftercare: [
+      "Avoid water and steam on the brows for 12–24 hours",
+      "Skip exfoliants around the brow area for a couple of days",
+      "Color softens gradually over 3–4 weeks",
+    ],
+    faqs: [
+      {
+        question: "How long does a brow tint last?",
+        answer:
+          "Typically 3–4 weeks, depending on your skin and routine. It fades gradually and naturally.",
+      },
+      {
+        question: "Can I add this to a facial?",
+        answer:
+          "Yes — brow tinting is a popular add-on to any facial or treatment. Just let us know when you book.",
+      },
+    ],
+    duration: "15 minutes",
+  },
+  {
+    id: "lash-tint",
+    name: "Lash Tint",
+    category: "Add-Ons",
+    description:
+      "A semi-permanent lash tint that darkens and defines your natural lashes for a bright, mascara-free, wide-awake look.",
+    longDescription:
+      "Lash tinting darkens your natural lashes from root to tip, making them look longer, fuller, and more defined — without mascara. Ideal for vacations, busy mornings, or anyone who wants an effortless, wide-awake eye. A quick, comfortable add-on to any service.",
+    image:
+      "https://images.unsplash.com/photo-1583241800698-9c2a4f3a1d9b?w=800&q=80",
+    features: [
+      "Darkens & defines natural lashes",
+      "Mascara-free, wide-awake look",
+      "Semi-permanent",
+      "Quick, comfortable add-on",
+    ],
+    idealFor: [
+      "Light or fair lashes",
+      "Mascara-free routines",
+      "Vacations & low-maintenance looks",
+    ],
+    aftercare: [
+      "Avoid water, steam, and rubbing for 12–24 hours",
+      "Skip oil-based eye products for a day",
+      "Color fades gradually over 3–4 weeks",
+    ],
+    faqs: [
+      {
+        question: "Is lash tinting safe around the eyes?",
+        answer:
+          "Yes — we use professional tints and keep your eyes closed and protected throughout. Let us know if you have sensitivities.",
+      },
+      {
+        question: "How long does it last?",
+        answer:
+          "Usually 3–4 weeks as your natural lashes cycle. It fades softly over time.",
+      },
+    ],
+    duration: "15 minutes",
   },
 ];
 

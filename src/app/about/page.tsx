@@ -1,21 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/site";
 
 const faqs = [
   {
     question: "What skin types are your products suitable for?",
     answer:
-      "All BLUM products are formulated to work across skin types. Our minimalist approach means fewer potential irritants, making our line especially well-suited for sensitive skin. Each product page notes specific skin type recommendations.",
+      "The skincare we carry is selected to work across skin types, and every treatment is customized to yours. Our curated, minimalist approach means fewer potential irritants — especially well-suited for sensitive skin. Each product page notes specific skin-type recommendations.",
   },
   {
     question: "Are your products cruelty-free and vegan?",
     answer:
-      "Yes. BLUM is 100% cruelty-free—we never test on animals at any stage of development. The majority of our products are also vegan, with each product clearly labeled on its packaging and product page.",
+      "Yes. The lines we carry are cruelty-free, and many are vegan as well. We prioritize professional-grade brands that share our commitment to clean, results-driven formulations.",
   },
   {
     question: "How long before I see results?",
@@ -33,9 +35,9 @@ const faqs = [
       "Absolutely. We offer personalized one-on-one consultations where our experts analyze your skin and build a tailored routine. You can book a session through our Services page or contact us directly.",
   },
   {
-    question: "Where are your products made?",
+    question: "What skincare lines do you carry?",
     answer:
-      "All BLUM products are formulated and manufactured in small batches at our facility in California. We source ingredients from trusted suppliers worldwide, prioritizing sustainability and traceability.",
+      "We curate professional, results-driven brands used in our treatments and available for home care — including Environ, DMK, and Face Reality. Every product on our shelves is one our estheticians personally trust and use.",
   },
 ];
 
@@ -86,10 +88,11 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              BLUM was born from a simple belief: skincare should work with your
-              skin, not against it. Founded in 2020, we set out to create products
-              that honor the skin&apos;s natural wisdom while delivering transformative
-              results.
+              BLÜM Skin Therapy was born from a simple belief: skincare should
+              work with your skin, not against it. From our studio in Warminster,
+              PA, we deliver results-driven, fully customized treatments — and a
+              curated line of professional skincare — that honor your skin&apos;s
+              natural wisdom.
             </motion.p>
           </div>
         </Container>
@@ -102,7 +105,7 @@ export default function AboutPage() {
             <div className="aspect-[21/9] bg-cream rounded-lg overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80"
-                alt="BLUM skincare laboratory"
+                alt="BLÜM Skin Therapy treatment studio"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -125,9 +128,9 @@ export default function AboutPage() {
                 skin thrives on simplicity and consistency.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                We formulate each product with a focused approach—fewer ingredients,
-                higher concentrations, better results. This isn&apos;t about what we
-                leave out; it&apos;s about perfecting what we include.
+                We build each treatment with a focused approach—the right
+                modalities, in the right order, for your skin. This isn&apos;t
+                about doing more; it&apos;s about doing what actually works.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 The result? Streamlined routines that deliver. Products that feel
@@ -187,27 +190,36 @@ export default function AboutPage() {
               </p>
               <h2 className="mb-6">Tatiana Mikhalev</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                With over 15 years in cosmetic chemistry, Tatiana founded BLUM after
-                witnessing firsthand how the industry prioritized trends over
-                efficacy.
+                A licensed esthetician with a deep passion for corrective skin
+                care, Tatiana founded BLÜM Skin Therapy to offer something the
+                industry too often overlooks: truly personalized treatment that
+                works with each client&apos;s skin rather than against it.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                &ldquo;I wanted to create products I would trust on my own skin,&rdquo; Tatiana
-                explains. &ldquo;That meant stripping away the noise and focusing on what
-                actually works—proven ingredients in their most effective forms.&rdquo;
+                &ldquo;I never wanted to hand someone a one-size-fits-all
+                facial,&rdquo; Tatiana explains. &ldquo;Every treatment I do is
+                built around the skin in front of me that day — what it needs to
+                heal, balance, and glow.&rdquo;
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Today, Tatiana oversees every formulation, ensuring BLUM products meet
-                the highest standards of quality and efficacy.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Trained in advanced modalities including DMK enzyme therapy,
+                Face Reality acne care, PROCELL microchanneling, and buccal
+                sculpting massage, Tatiana brings real results to every client
+                who sits in her chair.
               </p>
+              <Button href={siteConfig.bookingUrl} size="lg">
+                Book With Tatiana
+              </Button>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2} className="order-1 lg:order-2">
-              <div className="aspect-square bg-skin-light rounded-lg overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
-                  alt="Tatiana Mikhalev, Founder of BLUM"
-                  className="w-full h-full object-cover"
+              <div className="relative aspect-square bg-skin-light rounded-lg overflow-hidden">
+                <Image
+                  src="/owner.png"
+                  alt="Tatiana Mikhalev, founder of BLÜM Skin Therapy"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
                 />
               </div>
             </AnimatedSection>
@@ -219,17 +231,17 @@ export default function AboutPage() {
       <section className="py-20 md:py-32">
         <Container className="text-center">
           <AnimatedSection>
-            <h2 className="mb-6">Experience the BLUM Difference</h2>
+            <h2 className="mb-6">Experience the BLÜM Difference</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-              Ready to simplify your routine and transform your skin? Explore our
-              collection or book a consultation with one of our skincare experts.
+              Ready to transform your skin? Book a treatment with Tatiana or
+              explore our curated skincare collection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/products" size="lg">
-                Shop Products
+              <Button href={siteConfig.bookingUrl} size="lg">
+                Book a Treatment
               </Button>
-              <Button href="/contact" variant="outline" size="lg">
-                Get in Touch
+              <Button href="/products" variant="outline" size="lg">
+                Shop Products
               </Button>
             </div>
           </AnimatedSection>

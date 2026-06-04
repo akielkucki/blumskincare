@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig, fullAddress } from "@/lib/site";
 
 const footerLinks = {
   navigation: [
@@ -9,9 +10,9 @@ const footerLinks = {
     { href: "/contact", label: "Contact" },
   ],
   social: [
-    { href: "https://instagram.com", label: "Instagram" },
-    { href: "https://facebook.com", label: "Facebook" },
-    { href: "https://pinterest.com", label: "Pinterest" },
+    { href: siteConfig.social.instagram, label: "Instagram" },
+    { href: siteConfig.social.facebook, label: "Facebook" },
+    { href: siteConfig.bookingUrl, label: "Book Online" },
   ],
 };
 
@@ -23,12 +24,32 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="text-2xl font-medium tracking-tight">
-              BLUM
+              BLÜM
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
-              Elevating your skincare routine with thoughtfully crafted products
-              and personalized treatments for radiant, healthy skin.
+              Results-driven, fully customized skin therapy in Warminster, PA —
+              thoughtful treatments and curated skincare for healthy, radiant
+              skin.
             </p>
+            <address className="mt-6 not-italic text-sm text-muted-foreground space-y-1">
+              <p>{fullAddress}</p>
+              <p>
+                <a
+                  href={siteConfig.phoneHref}
+                  className="hover:text-foreground transition-colors"
+                >
+                  {siteConfig.phone}
+                </a>
+              </p>
+              <p>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="hover:text-foreground transition-colors"
+                >
+                  {siteConfig.email}
+                </a>
+              </p>
+            </address>
           </div>
 
           {/* Navigation */}
@@ -75,7 +96,8 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} BLUM Skincare. All rights reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
+            reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="/privacy" className="hover:text-foreground transition-colors">

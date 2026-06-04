@@ -1,15 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
-import type { Product } from "@/lib/shopify";
+import { createCheckout, type Product } from "@/lib/shopify";
+import { siteConfig } from "@/lib/site";
 
 interface ProductDetailClientProps {
   product: Product;
 }
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
+  const [status, setStatus] = useState<"idle" | "loading" | "unavailable">(
+    "idle"
+  );
+
+  const variantId = product.variants[0]?.id;
+  const inStock = product.variants[0]?.availableForSale ?? false;
+  const isShopifyProduct = variantId?.startsWith("gid://shopify") ?? false;
+
+  async function handleCheckout() {
+    if (!variantId) return;
+    setStatus("loading");
+    const checkoutUrl = await createCheckout(variantId, 1);
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    } else {
+      setStatus("unavailable");
+    }
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
       {/* Image */}
@@ -92,13 +113,42 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
         )}
 
         {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Button size="lg" className="flex-1">
-            Add to Cart
-          </Button>
-          <Button variant="outline" size="lg">
-            Buy Now
-          </Button>
+        <div className="space-y-3 pt-4">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button
+              size="lg"
+              className="flex-1"
+              onClick={handleCheckout}
+              disabled={status === "loading" || !inStock}
+            >
+              {status === "loading"
+                ? "Preparing checkout…"
+                : !inStock
+                  ? "Sold Out"
+                  : "Buy Now"}
+            </Button>
+            <Button
+              href={siteConfig.bookingUrl}
+              variant="outline"
+              size="lg"
+            >
+              Book a Consultation
+            </Button>
+          </div>
+
+          {status === "unavailable" && (
+            <p className="text-sm text-muted-foreground">
+              {isShopifyProduct
+                ? "Checkout is temporarily unavailable. Please try again shortly or purchase in studio."
+                : "Our online shop is launching soon — this is a sample product. Visit us in studio or book a consultation to purchase."}
+            </p>
+          )}
+          {!isShopifyProduct && status === "idle" && (
+            <p className="text-sm text-muted-foreground">
+              Sample product preview. Online checkout activates once our shop
+              goes live.
+            </p>
+          )}
         </div>
       </motion.div>
     </div>

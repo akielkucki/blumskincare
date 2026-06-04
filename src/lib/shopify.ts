@@ -1,3 +1,5 @@
+import { exampleProducts } from "@/data/exampleProducts";
+
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
@@ -254,9 +256,13 @@ export async function getAllProducts(): Promise<Product[]> {
     variables: { first: 100 },
   });
 
-  if (!data) return [];
+  const products = data
+    ? data.products.edges.map((edge) => normalizeProduct(edge.node))
+    : [];
 
-  return data.products.edges.map((edge) => normalizeProduct(edge.node));
+  // Fall back to example products when Shopify is unconfigured, unpaid, or empty,
+  // so the storefront always renders a populated catalog.
+  return products.length > 0 ? products : exampleProducts;
 }
 
 export async function getProductByHandle(
@@ -269,11 +275,55 @@ export async function getProductByHandle(
     variables: { handle },
   });
 
-  if (!data || !data.productByHandle) {
+  if (data?.productByHandle) {
+    return normalizeProduct(data.productByHandle);
+  }
+
+  // Fall back to a matching example product when Shopify has no result.
+  return exampleProducts.find((p) => p.handle === handle) ?? null;
+}
+
+// --- Cart / Checkout ---
+
+const CART_CREATE_MUTATION = `
+  mutation CartCreate($lines: [CartLineInput!]!) {
+    cartCreate(input: { lines: $lines }) {
+      cart {
+        id
+        checkoutUrl
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+/**
+ * Creates a Shopify cart for a single variant and returns the hosted checkout URL.
+ * Returns null when Shopify is unconfigured or the variant isn't a real Shopify
+ * product (e.g. example fallback products) — callers should handle this gracefully.
+ */
+export async function createCheckout(
+  variantId: string,
+  quantity = 1
+): Promise<string | null> {
+  if (!variantId.startsWith("gid://shopify")) {
     return null;
   }
 
-  return normalizeProduct(data.productByHandle);
+  const data = await shopifyFetch<{
+    cartCreate: {
+      cart: { id: string; checkoutUrl: string } | null;
+      userErrors: Array<{ message: string }>;
+    };
+  }>({
+    query: CART_CREATE_MUTATION,
+    variables: { lines: [{ merchandiseId: variantId, quantity }] },
+  });
+
+  return data?.cartCreate?.cart?.checkoutUrl ?? null;
 }
 
 export async function getFeaturedProduct(): Promise<Product | null> {

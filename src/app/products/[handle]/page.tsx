@@ -19,6 +19,27 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: ProductDetailPageProps) {
+  const { handle } = await params;
+  const product = await getProductByHandle(handle);
+
+  if (!product) {
+    return { title: "Product Not Found" };
+  }
+
+  return {
+    title: product.name,
+    description: product.description,
+    alternates: { canonical: `/products/${product.handle}` },
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      type: "website",
+      images: product.image ? [product.image] : undefined,
+    },
+  };
+}
+
 export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {

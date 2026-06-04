@@ -45,8 +45,30 @@ export function Button({
 
   const MotionComponent = motion.create("button");
   const MotionLink = motion.create(Link);
+  const MotionAnchor = motion.create("a");
 
   if (href) {
+    const isExternal = /^https?:\/\//.test(href);
+    const isProtocol = /^(tel:|mailto:|#)/.test(href);
+
+    // External URLs (e.g. the GlossGenius booking site) open in a new tab;
+    // tel:/mailto:/anchor links use a plain anchor; internal routes use next/link.
+    if (isExternal || isProtocol) {
+      return (
+        <MotionAnchor
+          href={href}
+          className={combinedClassName}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          {...(isExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {children}
+        </MotionAnchor>
+      );
+    }
+
     return (
       <MotionLink
         href={href}

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { ServiceDetail } from "@/components/services/ServiceDetail";
 import { services, getServiceById } from "@/data/services";
+import { siteConfig } from "@/lib/site";
 
 interface ServiceDetailPageProps {
   params: Promise<{ id: string }>;
@@ -24,8 +25,16 @@ export async function generateMetadata({ params }: ServiceDetailPageProps) {
   }
 
   return {
-    title: `${service.name} | Blum Skincare`,
+    title: service.name,
     description: service.description,
+    alternates: { canonical: `/services/${service.id}` },
+    openGraph: {
+      title: `${service.name} | ${siteConfig.name}`,
+      description: service.description,
+      url: `${siteConfig.url}/services/${service.id}`,
+      images: [service.image],
+      type: "website",
+    },
   };
 }
 
@@ -109,16 +118,16 @@ export default async function ServiceDetailPage({
               us to schedule your treatment or consultation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href={siteConfig.bookingUrl} variant="secondary" size="lg">
                 Book Now
               </Button>
               <Button
-                href="tel:+15551234567"
+                href={siteConfig.phoneHref}
                 variant="outline"
                 size="lg"
                 className="border-background text-background bg-white hover:bg-gray-300 hover:text-foreground"
               >
-                Call (555) 123-4567
+                Call {siteConfig.phone}
               </Button>
             </div>
           </AnimatedSection>

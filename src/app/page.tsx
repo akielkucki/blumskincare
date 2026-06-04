@@ -8,6 +8,13 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { AboutTeaser } from "@/components/home/AboutTeaser";
 import { ServiceCard } from "@/components/home/ServiceCard";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  description:
+    "BLÜM Skin Therapy — a results-driven skin studio in Warminster, PA. Customized facials, acne treatments, DMK enzyme therapy, PROCELL microchanneling, and curated skincare. Book online today.",
+};
 
 export const revalidate = 60;
 

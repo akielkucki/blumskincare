@@ -6,6 +6,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ServiceSection } from "@/components/services/ServiceSection";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/data/services";
+import { siteConfig } from "@/lib/site";
 
 export default function ServicesPage() {
   return (
@@ -66,16 +67,16 @@ export default function ServicesPage() {
               to schedule your treatment or consultation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href={siteConfig.bookingUrl} variant="secondary" size="lg">
                 Book Now
               </Button>
               <Button
-                href="tel:+15551234567"
+                href={siteConfig.phoneHref}
                 variant="outline"
                 size="lg"
                 className="border-background text-background bg-white hover:bg-gray-300 hover:text-foreground"
               >
-                Call (555) 123-4567
+                Call {siteConfig.phone}
               </Button>
             </div>
           </AnimatedSection>

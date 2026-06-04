@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import type { Service } from "@/data/services";
+import { siteConfig } from "@/lib/site";
 
 interface ServiceDetailProps {
   service: Service;
@@ -92,14 +93,14 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
               <p className="text-lg font-medium">{service.duration}</p>
             </div>
           )}
-          {!service.price && (
-            <div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
-                Starting at
-              </p>
-              <p className="text-lg font-medium">${service.price}</p>
-            </div>
-          )}
+          <div>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
+              {service.price ? "Starting at" : "Pricing"}
+            </p>
+            <p className="text-lg font-medium">
+              {service.price ? `$${service.price}` : "On consultation"}
+            </p>
+          </div>
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
               Category
@@ -149,10 +150,10 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 pt-2">
-          <Button href="/contact" size="lg" className="flex-1">
+          <Button href={siteConfig.bookingUrl} size="lg" className="flex-1">
             Book This Treatment
           </Button>
-          <Button href="tel:+15551234567" variant="outline" size="lg">
+          <Button href={siteConfig.phoneHref} variant="outline" size="lg">
             Call to Book
           </Button>
         </div>

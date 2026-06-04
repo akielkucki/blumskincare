@@ -3,6 +3,7 @@
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { siteConfig } from "@/lib/site";
 
 export function ContactCTA() {
   return (
@@ -18,16 +19,16 @@ export function ContactCTA() {
             questions. We&apos;re here to help you achieve your best skin ever.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact" variant="secondary" size="lg">
-              Contact Us
+            <Button href={siteConfig.bookingUrl} variant="secondary" size="lg">
+              Book an Appointment
             </Button>
             <Button
-              href="/services"
+              href="/contact"
               variant="outline"
               size="lg"
               className="border-white text-background bg-background"
             >
-              Book a Service
+              Contact Us
             </Button>
           </div>
         </AnimatedSection>

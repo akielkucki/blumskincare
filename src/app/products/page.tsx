@@ -6,6 +6,14 @@ import {
 } from "@/components/products/ProductCard";
 import { getAllProducts, getCollectionsWithProducts } from "@/lib/shopify";
 import { ProductsHero } from "@/components/products/ProductsHero";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Shop Skincare",
+  description:
+    "Shop BLÜM Skin Therapy's curated collection of professional-grade skincare — serums, cleansers, moisturizers, and treatments selected by our estheticians.",
+  alternates: { canonical: "/products" },
+};
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

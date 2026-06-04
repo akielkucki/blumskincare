@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Service } from "@/data/services";
 import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/site";
 
 interface ServiceSectionProps {
   service: Service;
@@ -141,25 +142,27 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                   </div>
                 </div>
               )}
-              {!service.price && (
-                <div className="flex items-center gap-2">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="text-skin-dark"
-                  >
-                    <path d="M12 3v18M7 7h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8" strokeLinecap="round" />
-                  </svg>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Starting at</p>
-                    <p className="text-sm font-medium">${service.price}</p>
-                  </div>
+              <div className="flex items-center gap-2">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-skin-dark"
+                >
+                  <path d="M12 3v18M7 7h7a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h8" strokeLinecap="round" />
+                </svg>
+                <div>
+                  <p className="text-xs text-muted-foreground">
+                    {service.price ? "Starting at" : "Pricing"}
+                  </p>
+                  <p className="text-sm font-medium">
+                    {service.price ? `$${service.price}` : "On consultation"}
+                  </p>
                 </div>
-              )}
+              </div>
               {service.idealFor && service.idealFor.length > 0 && (
                 <div className="flex items-center gap-2">
                   <svg
@@ -430,7 +433,7 @@ export function ServiceSection({ service, index }: ServiceSectionProps) {
                 </svg>
               </Link>
 
-              <Button href="/contact" variant="outline">
+              <Button href={siteConfig.bookingUrl} variant="outline">
                 Book Now
               </Button>
             </div>
