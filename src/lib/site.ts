@@ -12,7 +12,7 @@ export const siteConfig = {
     "BLÜM Skin Therapy is a results-driven skin studio in Warminster, PA offering customized facials, acne treatments, DMK enzyme therapy, PROCELL microchanneling, and buccal sculpting massage. Book your treatment or shop our curated skincare.",
   // Public site URL — override with NEXT_PUBLIC_SITE_URL in production.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.blumskintherapy.com",
-  bookingUrl: "https://blumskintherapy.glossgenius.com/",
+  bookingUrl: "https://blumskintherapy.glossgenius.com/services",
   email: "hello@blumskincare.com",
   phone: "(215) 485-3671",
   phoneHref: "tel:+12154853671",

@@ -36,12 +36,7 @@ export const services: Service[] = [
     longDescription:
       "Every skin journey at BLÜM begins here. We start by getting to know your skin and your goals, then move directly into a fully customized treatment built around what your skin needs that day — deep cleansing, extractions, lymphatic drainage, massage, LED, chemical exfoliation, and barrier support. You'll leave with clearer skin and a clear plan for what comes next.",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1000&q=80",
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
-      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/d1fb7200aecd6871d38d292872cd856f94550c51/image/e1ff2adb340f256e6b4ca00445b75b55.jpg",
     features: [
       "In-depth skin analysis",
       "Customized treatment, not a fixed menu",
@@ -107,12 +102,7 @@ export const services: Service[] = [
     longDescription:
       "The BLÜM Signature Facial is the heart of our menu — a results-driven, fully customized treatment built around your skin on the day you arrive. Every step is selected to balance, refresh, and visibly brighten your complexion, combining advanced techniques with deeply relaxing touch. Recommended every 4–6 weeks to align with your skin's natural renewal cycle.",
     image:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
-      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1000&q=80",
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/33e864ccfa3a446d556d8a8e3b16d57436f00f8d/image/49b462aa207e1e6043fc8921cd993d04.jpg",
     features: [
       "Customized to your skin's current condition",
       "Cleansing & exfoliation",
@@ -182,12 +172,7 @@ export const services: Service[] = [
     longDescription:
       "A deeply restorative treatment that works the muscles of the face from both inside and out. Intraoral (buccal) massage releases tension held in the jaw and cheeks, while lymphatic techniques drain fluid, reduce puffiness, and leave the face looking lifted, sculpted, and refreshed. Includes an Environ cleanse and an optional finishing mask to seal in the glow.",
     image:
-      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1000&q=80",
-      "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1000&q=80",
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/a69175d44020f90c9445192e4269f2871bac1de2/image/ec6df4b6277d85b4b7cee750de11bfda.jpg",
     features: [
       "Intraoral buccal massage",
       "Lymphatic drainage techniques",
@@ -252,12 +237,7 @@ export const services: Service[] = [
     longDescription:
       "The Face Reality Acne Bootcamp is a corrective treatment for clients actively following our acne program. Built on the Face Reality method, each session combines professional exfoliation, extractions, and high-frequency or LED therapy to accelerate clearing while your customized home-care routine does the heavy lifting between visits. Best results come from consistency — biweekly or monthly — alongside your prescribed products.",
     image:
-      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1000&q=80",
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000&q=80",
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/0db03982827e6df33acd7ab9346db10983770078/image/354ab9677e30de54a95ab1205ff353df.jpg",
     features: [
       "Built on the Face Reality method",
       "Professional exfoliation",
@@ -322,12 +302,7 @@ export const services: Service[] = [
     longDescription:
       "PROCELL Microchanneling is a next-generation alternative to traditional microneedling. Fine microchannels trigger the skin's natural repair response while a bio-identical, stem-cell-derived growth factor serum is infused to amplify results. Over a series of treatments it visibly improves fine lines, acne scarring, pore size, pigmentation, and overall firmness — with minimal downtime. Pricing and the ideal series are confirmed at your consultation.",
     image:
-      "https://images.unsplash.com/photo-1620916297612-2c1d0c5c1c2e?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000&q=80",
-      "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1000&q=80",
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/d7ae95ff2ff872441537eff9da5b00b443503008/image/d1c8f3eee5c708a97c4a711adbd5d25e.jpg",
     features: [
       "Stimulates natural collagen production",
       "Stem-cell-derived growth factor infusion",
@@ -392,12 +367,7 @@ export const services: Service[] = [
     longDescription:
       "DMK Enzyme Therapy is built on the philosophy of restoring skin to its peak function. The Level 1 enzyme masque creates a reverse osmosis effect — flushing toxins, oxygenating the skin, and stimulating circulation through the signature 'plasmatic' action. It's deeply detoxifying and strengthening, making it ideal for a wide range of concerns from aging to acne. Pricing is confirmed at your consultation.",
     image:
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1000&q=80",
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&q=80",
-      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/f4918d82333b81baa51121b5eda9d8703743f522/image/254d5c5e2bf8d018eef4a69a564a3752.jpg",
     features: [
       "Signature DMK enzyme masque",
       "Oxygenates & detoxifies",
@@ -460,13 +430,9 @@ export const services: Service[] = [
       "An advanced DMK enzyme treatment recommended after Level 1, intensifying the enzymatic action to address more pronounced concerns and accelerate results.",
     longDescription:
       "Level 2 builds on the foundation of DMK Enzyme Therapy Level 1, intensifying the enzymatic and corrective action for clients whose skin is ready for more. It targets deeper concerns — pigmentation, advanced aging, and stubborn congestion — and is most effective once your skin has acclimated through Level 1. Recommended after Level 1; pricing confirmed at consultation.",
+    // GlossGenius has no dedicated photo for Level 2; reuse the DMK Level 1 image.
     image:
-      "https://images.unsplash.com/photo-1607008829749-c0f284a49841?w=800&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1607008829749-c0f284a49841?w=1000&q=80",
-      "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1000&q=80",
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1000&q=80",
-    ],
+      "https://static.glossgenius.com/public/service/f4918d82333b81baa51121b5eda9d8703743f522/image/254d5c5e2bf8d018eef4a69a564a3752.jpg",
     features: [
       "Advanced enzymatic action",
       "Targets pigmentation & deeper concerns",
@@ -530,7 +496,7 @@ export const services: Service[] = [
     longDescription:
       "A quick, high-impact enhancement. Brow tinting deposits a semi-permanent color that defines your natural shape, fills sparse areas, and frames the face — so you wake up with groomed, fuller-looking brows for weeks. A perfect add-on to any facial.",
     image:
-      "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
+      "https://static.glossgenius.com/public/service/2086cc90a65ce00cbc278c60edc956096a5f30f2/image/c4fa446abd3823aedd6a33ebefa19fe7.jpg",
     features: [
       "Defines & deepens brow color",
       "Adds shape and fullness",
@@ -570,7 +536,7 @@ export const services: Service[] = [
     longDescription:
       "Lash tinting darkens your natural lashes from root to tip, making them look longer, fuller, and more defined — without mascara. Ideal for vacations, busy mornings, or anyone who wants an effortless, wide-awake eye. A quick, comfortable add-on to any service.",
     image:
-      "https://images.unsplash.com/photo-1583241800698-9c2a4f3a1d9b?w=800&q=80",
+      "https://static.glossgenius.com/public/service/a1016afe274d25bb9c80d7e0d2080a3c5c7c6ac4/image/84f7b03c61d18f1d33efb07a21247479.jpg",
     features: [
       "Darkens & defines natural lashes",
       "Mascara-free, wide-awake look",
